@@ -41,7 +41,7 @@ const LoginSign = (props) => {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('email', email);
                 setRole(response.data.role);
-                navigate(roleMap[response.data.role] || toast.error("Not a valid email or password"));
+                navigate(roleMap[response.data.role], { state: { email: response.data.email } });
                 setEmail('');
                 setPassword('');
             }
@@ -64,8 +64,7 @@ const LoginSign = (props) => {
                 setPassword('');
                 setUsername('');
                 setroleDropdown('Patient');
-                navigate(roleMap[response.data.role] || '/');
-
+                navigate(roleMap[response.data.role], { state: { email: response.data.email } });
             }
         } catch (error) {
             toast.error('Signup failed. Please try again.');
@@ -109,6 +108,8 @@ const LoginSign = (props) => {
                             <button type="submit" className="btn-login">Login</button>
                         </form>
                     </div>
+                    
+                    
                     <div className={`form-wrapper ${!props.isLogin ? "is-active" : ""}`}>
                         <button type="button" className="switcher switcher-signup" onClick={toggleForm}>
                             Sign Up
@@ -117,6 +118,20 @@ const LoginSign = (props) => {
                         <form className="form form-signup" onSubmit={handleSignUp}>
                             <fieldset>
                                 <legend>Please, enter your username, email, and password for sign up.</legend>
+                                
+                                <div className="input-block">
+                                    <label htmlFor="signup-username">Name</label>
+                                    <input id="signup-username" value={username} onChange={handleUsernameChange} type="text" required />
+                                </div>
+                                <div className="input-block">
+                                    <label htmlFor="signup-email">E-mail</label>
+                                    <input id="signup-email" value={email} onChange={handleEmailChange} type="email" required />
+                                </div>
+                                <div className="input-block">
+                                    <label htmlFor="signup-password">Password</label>
+                                    <input id="signup-password" value={password} onChange={handlePasswordChange} type="password" required />
+                                </div>
+
                                 <div className='roleDropdown' >
                                     <label for="selectRole">Sign in as:</label>
                                     <select
@@ -130,18 +145,7 @@ const LoginSign = (props) => {
                                         <option value="Doctor">Doctor</option>
                                     </select>
                                 </div>
-                                <div className="input-block">
-                                    <label htmlFor="signup-username">Username</label>
-                                    <input id="signup-username" value={username} onChange={handleUsernameChange} type="text" required />
-                                </div>
-                                <div className="input-block">
-                                    <label htmlFor="signup-email">E-mail</label>
-                                    <input id="signup-email" value={email} onChange={handleEmailChange} type="email" required />
-                                </div>
-                                <div className="input-block">
-                                    <label htmlFor="signup-password">Password</label>
-                                    <input id="signup-password" value={password} onChange={handlePasswordChange} type="password" required />
-                                </div>
+                                
                             </fieldset>
                             <button type="submit" className="btn-signup">Sign Up</button>
                         </form>
