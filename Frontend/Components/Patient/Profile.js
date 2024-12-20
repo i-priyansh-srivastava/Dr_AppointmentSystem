@@ -1,23 +1,47 @@
 import "../../styles/PatientStyle/Profile.css"
 import profilePic from "../../images/photograph.jpg"
-const Profile = () => {
-    return (
-        <div className="patProfileContainer">
-            <div className="patProfielTab">
-                <div className="patcontent">
-                    <h2>Priyansh Srivastava</h2>
-                    <h5>Age: 22 yrs</h5>
-                    <h5>Gender: Male</h5>
-                    <h5>Blood Group: AB+</h5>
-                </div>
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-                <div>
-                    <img className="patProfilePic" src={profilePic} alt="4040"></img>
-                </div>
-            </div>
-            <button className="patEditBtn">Edit</button>
+const Profile = (props) => {
+  const email = props.email;
+
+  const [user, setUser] = useState(null); 
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/v1/getUser/${email}`);
+        setUser(response.data.user); 
+      } catch (e) {
+        console.error("Error fetching user:", e);
+      }
+    };
+
+    fetchUser(); 
+  }, [email]);
+
+  if (!user) {
+    return <div>Loading...</div>; 
+  }
+
+  return (
+    <div className="patProfileContainer">
+      <div className="patProfielTab">
+        <div className="patcontent">
+          <h2>{user.username}</h2>
+          <h5>Age: {user.age}</h5>
+          <h5>Gender: {user.gender}</h5>
+          <h5>Blood Group: {user.bloodGroup}</h5>
         </div>
-    )
-}
 
-export default Profile
+        <div>
+          <img className="patProfilePic" src={profilePic} alt="Profile" />
+        </div>
+      </div>
+      <button className="patEditBtn">Edit</button>
+    </div>
+  );
+};
+
+export default Profile;
