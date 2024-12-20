@@ -23,8 +23,8 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   contactNo: {
-    type: String,
-    default: '',
+    type: Number,
+    default: 987654321,
     validate: {
       validator: function (v) {
         return /^\d{10}$/.test(v);
@@ -34,19 +34,19 @@ const userSchema = new mongoose.Schema({
   },
   specialization: {
     type: String,
-    default: '', // Optional for doctors
+    default: '', 
   },
   experience: {
     type: Number,
-    default: 0, // Optional for doctors
+    default: 0,
   },
   consultationFee: {
     type: Number,
-    default: 0, // Optional for doctors
+    default: 0,
   },
   availability: {
     type: [String],
-    default: [], // Optional for doctors
+    default: [], 
   },
   address: {
     type: String,
@@ -55,17 +55,17 @@ const userSchema = new mongoose.Schema({
   age: {
     type: Number,
     min: 0,
-    default: 0, // Optional for patients
+    default: 0, 
   },
   gender: {
     type: String,
     default: '',
-    enum: ['Male', 'Female', 'Other'],
+    enum: ['Male', 'Female', 'Other','Missing Data'],
   },
   bloodGroup: {
     type: String,
     default: '',
-    enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+    enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'Missing Data'],
   },
 }, { collection: 'userDetails'});
 
