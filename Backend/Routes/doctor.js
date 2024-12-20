@@ -1,6 +1,7 @@
 
 const express =require('express')
 const  { logIn, signUp } =require('../Controllers/userController')
+const { getUserByEmail }= require("../Controllers/GetUserDetails")
 const  getAllDoctors =require('../Controllers/AllDoctors')
 const deleteDoc = require("../Controllers/DeleteDr")
 const { addDr } = require("../Controllers/AddDr")
@@ -24,6 +25,9 @@ const upload = multer({ dest: 'uploads/' }); // Temporary storage for file uploa
 
 router.post('/login',logIn);
 router.post('/signup',signUp);
+
+router.get("/getUser/:email", getUserByEmail);
+
 
 router.get('/allDoctor',getAllDoctors); 
 router.delete('/allDoctor/:id', deleteDoc);
