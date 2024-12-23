@@ -1,6 +1,6 @@
 import "../../styles/PatientStyle/Dashboard.css"
-import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from 'react-router-dom';
 
 import Profile from "./Profile.js";
 import AllDoctors from "./AllDoctors.js"
@@ -11,8 +11,19 @@ import Ambulance from "./Ambulance.js"
 
 
 const Dashboard = () => {
+
+    const location = useLocation();
+    const email = location.state?.email;
+
+    useEffect(() => {
+        if (email) {
+            console.log("Email for this user:", email);
+        }
+    }, [email]);
+
+    console.log(email)
     const selectedBtnMap = {
-        Profile:<Profile/>,
+        Profile:<Profile email = {email}/>,
         AllDoctors: <AllDoctors />,
         Bookings: <Bookings />,
         Documents: <Documents />,

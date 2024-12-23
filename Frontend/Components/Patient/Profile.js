@@ -21,6 +21,8 @@ const Profile = (props) => {
     fetchUser(); 
   }, [email]);
 
+  console.log(user);
+  
   if (!user) {
     return <div>Loading...</div>; 
   }

@@ -1,3 +1,4 @@
+
 const Featuredata = [
     {
         id:1,
@@ -5,13 +6,14 @@ const Featuredata = [
         para:"Minimize the time it takes for patients to schedule an appointment. Enable easy online self-booking with your specialists.",
 
     },
-  
+
     {
         id:2,
         title:"Display availability for all staff",
         para:"Add individual profiles for your practice’s doctors. Direct patients to the appropriate consultant and streamline booking.",
 
     },
+
 
     {
         id:3,
@@ -20,6 +22,8 @@ const Featuredata = [
 
     },
 
+
+
     {
         id:4,
         title:"View your schedule on-the-go",
@@ -27,12 +31,16 @@ const Featuredata = [
 
     },
 
+
+
     {
         id:5,
         title:"Set up recurring follow-ups",
         para:"Establish full treatment plans and book multiple appointments in advance with your doctor appointment software.",
 
     },
+
+
 
     {
         id:6,
