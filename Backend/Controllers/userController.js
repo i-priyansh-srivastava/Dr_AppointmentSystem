@@ -65,7 +65,27 @@ const logIn = async (req, res) => {
   }
 };
 
-module.exports = {
-  logIn,
-  signUp
-}
+
+const updateUser = async (req, res) => {
+  const { email } = req.params; 
+  const updatedData = req.body; 
+
+  try {
+    const updatedUser = await UserData.findOneAndUpdate(
+      { email }, 
+      { $set: updatedData }, 
+      { new: true, runValidators: true } 
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "User updated successfully", updatedUser });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+module.exports = { logIn, signUp, updateUser }

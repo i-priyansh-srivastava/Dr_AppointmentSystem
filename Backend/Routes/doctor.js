@@ -1,6 +1,6 @@
 
 const express =require('express')
-const  { logIn, signUp } =require('../Controllers/userController')
+const  { logIn, signUp, updateUser } =require('../Controllers/userController')
 const { getUserByEmail }= require("../Controllers/GetUserDetails")
 const  getAllDoctors =require('../Controllers/AllDoctors')
 const deleteDoc = require("../Controllers/DeleteDr")
@@ -27,6 +27,8 @@ router.post('/login',logIn);
 router.post('/signup',signUp);
 
 router.get("/getUser/:email", getUserByEmail);
+
+router.patch("/updateUser/:email" , updateUser);
 
 
 router.get('/allDoctor',getAllDoctors); 

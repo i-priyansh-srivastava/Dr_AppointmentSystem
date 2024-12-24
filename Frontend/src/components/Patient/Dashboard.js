@@ -24,9 +24,9 @@ const Dashboard = () => {
     console.log(email)
     const selectedBtnMap = {
         Profile:<Profile email = {email}/>,
-        AllDoctors: <AllDoctors />,
-        Bookings: <Bookings />,
-        Documents: <Documents />,
+        AllDoctors: <AllDoctors email = {email}/>,
+        Bookings: <Bookings email = {email}/>,
+        Documents: <Documents email = {email}/>,
         Notification: <Notification />,
         Ambulance: <Ambulance />,
     };

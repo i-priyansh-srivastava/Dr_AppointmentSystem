@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema({
   bloodGroup: {
     type: String,
     default: '',
-    enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'Missing Data'],
+    enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'NA'],
   },
 }, { collection: 'userDetails'});
 

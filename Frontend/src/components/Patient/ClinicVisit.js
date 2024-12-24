@@ -8,7 +8,7 @@ const ClinicVisit = (props) => {
     const [Dr, setDr] = useState([]);
     const [Data, setData] = useState('');
     const [showModal, setShowModal] = useState(false);
-
+    const userEmail = props.userEmail;
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -56,7 +56,7 @@ const ClinicVisit = (props) => {
     const [AppointmentDate, setAppointmentDate] = useState('');
     const [AppointmentTime, setAppointmentTime] = useState('');
     const [ContactNo, setContactNo] = useState('');
-    const [DrEmail, setEmail] = useState('');
+    // const [DrEmail, setEmail] = useState('');
     const [Symptoms, setSymptoms] = useState('');
 
     // const handlePayment = async () => {
@@ -177,7 +177,7 @@ const ClinicVisit = (props) => {
                     },
                     prefill: {
                         name: PatientName,
-                        email: DrEmail,
+                        email: userEmail,
                         contact: ContactNo.replace(/[^0-9]/g, ''),
                     },
                     theme: {
@@ -214,11 +214,12 @@ const ClinicVisit = (props) => {
             await axios.post('http://localhost:5000/api/v1/patient_dashboard', {
                 doctorId: Data.id,
                 DoctorName: Data.name,
+                DrEmail : Data.email,
                 PatientName,
                 AppointmentDate,
                 AppointmentTime,
                 ContactNo,
-                DrEmail,
+                PatientEmail:userEmail,
                 Symptoms,
             });
             toast.success("Appointment booked successfully!");
@@ -275,12 +276,7 @@ const ClinicVisit = (props) => {
                             onChange={(e) => setContactNo(e.target.value)}
                             required />
 
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" id="email"
-                            name="email"
-                            value={DrEmail}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required />
+                        <label htmlFor="email">Email: {userEmail}</label>
 
                         <label htmlFor="symptoms">Symptoms/Reason for Visit:</label>
                         <textarea id="symptoms"

@@ -1,191 +1,175 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "../../styles/DrStyle/SettingStyle.css";
 
-const Settings = ({ drID }) => {
-    const [displayName, setDisplayName] = useState("");
-    const [new_Fee, setConsultationFee] = useState("");
-    const [new_address, setAddress] = useState("");
-    const [new_experience, setExperience] = useState("");
-    const [new_email, setEmail] = useState("");
-    const [image, setImage] = useState(null);
-    const [loading, setLoading] = useState(true);
+const Setting = (props) => {
+    const email = props.email;
+
+    const [user, setUser] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formData, setFormData] = useState({});
 
     useEffect(() => {
-        const fetchDoctorSettings = async () => {
+        const fetchUser = async () => {
             try {
-                setLoading(true)
-                const response = await axios.get(`http://localhost:5000/api/v1/getDr_profile/${drID}`);
-                console.log(response.data);
-                
-                const { name, consultationFee, address, experience, email, img  } = response.data;
-                console.log(consultationFee + "  " + experience);
-                
-
-                setDisplayName(name);
-                setConsultationFee(consultationFee);
-                setAddress(address);
-                setExperience(experience);
-                setEmail(email);
-                // setImage(img);
-                setLoading(false);
-            } catch (error) {
-                console.error("Error fetching settings:", error);
-                toast.error("Failed to load settings.");
+                const response = await axios.get(`http://localhost:5000/api/v1/getUser/${email}`);
+                setUser(response.data.user);
+            } catch (e) {
+                console.error("Error fetching user:", e);
             }
         };
-        console.log(drID);
-        
 
-        if (drID) 
-            fetchDoctorSettings();
-    }, [drID]);
+        fetchUser();
+    }, [email]);
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
+    const handleEditClick = () => {
+        setFormData(user);
+        setIsModalOpen(true);
     };
 
-    const handleSubmit = async (e) => {
-        console.log("Submit clicked");
-        
+    const handleFormChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-
-        if (!displayName || !new_Fee || !new_address || !new_experience || !new_email) {
-            toast.warn("Please fill in all required fields.");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("name", displayName);
-        formData.append("consultationFee", new_Fee);
-        formData.append("address", new_address);
-        formData.append("experience", new_experience);
-        formData.append("email", new_email);
-        if (image && typeof image !== "string") {
-            formData.append("img", image);
-        }
-
         try {
-            await axios.put(`http://localhost:5000/api/v1/getDr_profile/${drID}`, formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
-            toast.success("Settings updated successfully!");
-        } catch (error) {   
-            console.error("Error updating settings:", error);
-            toast.error("Failed to update settings. Please try again.");
+            const response = await axios.patch(`http://localhost:5000/api/v1/updateUser/${email}`, formData);
+            setUser(response.data.updatedUser);
+            setIsModalOpen(false);
+            console.log("User updated successfully:", response.data.updatedUser);
+        } catch (e) {
+            console.error("Error updating user:", e);
         }
     };
 
-    if (loading) {
+    if (!user) {
         return <div>Loading...</div>;
     }
 
     return (
-        <div className="settings">
-            <h2>Update Your Profile</h2>
-            <form onSubmit={handleSubmit} className="settings-form">
-                <label htmlFor="displayName">Display Name:</label>
-                <input
-                    type="text"
-                    id="displayName"
-                    value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
-                    placeholder="Enter your name"
-                    required
-                />
-
-                <div className="sameline">
-                    <label htmlFor="experience">Experience (in years):</label>
-                    <input
-                        type="number"
-                        id="experience"
-                        value={ new_experience }
-                        onChange={(e) => setExperience(e.target.value)}
-                        placeholder="Enter your experience"
-                        required
-                    />
-                
-                    <label htmlFor="consultationFee">Consultation Fee:</label>
-                    <input
-                        type="number"
-                        id="consultationFee"
-                        value={new_Fee}
-                        onChange={(e) => setConsultationFee(e.target.value)}
-                        placeholder="Enter fee in USD"
-                        required
-                    />
+        <div className="doctor-profile-container">
+            <div className="doctor-profile-header">
+                <div className="doctor-profile-details">
+                    <h2>{user.username}</h2>
+                    <h5>Email: {user.email}</h5>
+                    <h5>Age: {user.age}</h5>
+                    <h5>Gender: {user.gender}</h5>
+                    <h5>Blood Group: {user.bloodGroup}</h5>
+                    {user.role === "Doctor" && (
+                        <>
+                            <h5>Specialization: {user.specialization || "N/A"}</h5>
+                            <h5>Consultation Fee: ₹{user.consultationFee || "N/A"}</h5>
+                            <h5>Address: {user.address || "N/A"}</h5>
+                            <h5>Availability: {user.availability || "N/A"}</h5>
+                            <h5>Experience: {user.experience || "N/A"} years</h5>
+                            <h5>Contact No: {user.contactNo || "N/A"}</h5>
+                        </>
+                    )}
                 </div>
+                <div className="doctor-profile-pic">
+                    <img src={user.profilePic || "default-profile.jpg"} alt="Profile" />
+                </div>
+            </div>
 
+            <button className="doctor-edit-button" onClick={handleEditClick}>Edit Profile</button>
 
-                <label htmlFor="address">Address:</label>
-                <textarea
-                    id="address"
-                    value={new_address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Enter your address"
-                    rows="3"
-                    required
-                ></textarea>
-
-                
-
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    value={new_email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    required
-                />
-
-                <label htmlFor="image">Profile Image:</label>
-                <input
-                    type="file"
-                    id="image"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                />
-                {image && typeof image === "string" && (
-                    <img src={image} alt="Current Profile" className="current-image" />
-                )}
-
-                <button type="submit" className="submit-btn">
-                    Save Changes
-                </button>
-            </form>
+            {isModalOpen && (
+                <div className="doctor-modal">
+                    <div className="doctor-modal-content">
+                        <h3>Edit Profile</h3>
+                        <form onSubmit={handleFormSubmit}>
+                            <input
+                                type="text"
+                                name="username"
+                                value={formData.username || ""}
+                                onChange={handleFormChange}
+                                placeholder="Username"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="contactNo"
+                                value={(formData.contactNo == 1000000000) ? "" : formData.contactNo}
+                                onChange={handleFormChange}
+                                placeholder="Contact No"
+                                required
+                            />
+                            <input
+                                type="number"
+                                name="age"
+                                value={formData.age || ""}
+                                onChange={handleFormChange}
+                                placeholder="Age"
+                                required
+                            />
+                            <select
+                                name="gender"
+                                value={formData.gender || ""}
+                                onChange={handleFormChange}
+                                required
+                            >
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <input
+                                type="text"
+                                name="bloodGroup"
+                                value={formData.bloodGroup === "Missing Data" ? "" : formData.bloodGroup}
+                                onChange={handleFormChange}
+                                placeholder="Blood Group"
+                                required
+                            />
+                            {user.role === "Doctor" && (
+                                <>
+                                    <input
+                                        type="text"
+                                        name="specialization"
+                                        value={formData.specialization === "Missing Data" ? "" : formData.specialization}
+                                        onChange={handleFormChange}
+                                        placeholder="Specialization"
+                                    />
+                                    <input
+                                        type="number"
+                                        name="consultationFee"
+                                        value={formData.consultationFee || ""}
+                                        onChange={handleFormChange}
+                                        placeholder="Consultation Fee"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        value={formData.address === "Missing Data" ? "" : formData.address}
+                                        onChange={handleFormChange}
+                                        placeholder="Address"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="availability"
+                                        value={formData.availability || ""}
+                                        onChange={handleFormChange}
+                                        placeholder="Availability"
+                                    />
+                                    <input
+                                        type="number"
+                                        name="experience"
+                                        value={formData.experience || ""}
+                                        onChange={handleFormChange}
+                                        placeholder="Experience"
+                                    />
+                                </>
+                            )}
+                            <button type="submit" className="doctor-save-button">Save</button>
+                            <button type="button" className="doctor-cancel-button" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
 
-export default Settings;
-
-
-// const GetProfile = async (req, res) => {
-//     console.log("hello");
-    
-//     try {
-//         const doctorId = req.params.id;
-
-//         if (!doctorId) {
-//             return res.status(400).json({ error: 'Doctor ID is required' });
-//         }
-
-//         const profile = await DrSchema.findById(doctorId);
-
-//         if (!profile) {
-//             return res.status(404).json({ error: 'Doctor not found' });
-//         }
-
-//         res.status(200).json(profile);
-//     }
-//     catch (error) {
-//         console.error('Error fetching doctor profile:', error);
-//         res.status(500).json({ error: 'Failed to fetch doctor profile', details: error.message });
-//     }
-// };
-
-// controller is not accessed since console("hello") is coming up
+export default Setting;

@@ -4,8 +4,8 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Bookings = () => {
-
+const Bookings = (props) => {
+  const userEmail = props.email;
   const [allBookings, setBookings] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const Bookings = () => {
 
       try {
         const response = await axios.get('http://localhost:5000/api/v1/bookings');
-        const myBookings = response.data.filter((it) => (it.PatientName === "Priyansh Srivastava"));
+        const myBookings = response.data.filter((it) => (it.PatientEmail === userEmail));
         setBookings(myBookings);
       }
 

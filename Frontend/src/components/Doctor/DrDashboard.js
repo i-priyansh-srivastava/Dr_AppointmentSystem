@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import "../../styles/DrStyle/DrDashboard.css"
 import drPic from "../../images/drPIC.avif"
 import PatientHistory from './PatientHistory.js';
@@ -9,10 +9,13 @@ import DrSession from './DrSession.js'
 import Setting from "./DrSetting.js";
 
 const Dashboard = () => {
+
+    const location = useLocation();
+    const email = location.state?.email;
+
     const consultations = [
         { date: "2024-11-01", patient: "Dr. Smith", diagnosis: "Cold", treatment: "Rest and medication", phone: 8754124623 },
         { date: "2024-10-20", patient: "Dr. Adams", diagnosis: "Flu", treatment: "Flu vaccine and fluids", phone: 9641943168 },
-        // Add more entries as needed
     ];
 
   
@@ -36,7 +39,7 @@ const Dashboard = () => {
         PatientHistory: <PatientHistory consultations={consultations} />,
         UpApp: <MyAppointments/>,
         Sessions: <DrSession />,
-        Setting: <Setting drID={drID}/>
+        Setting: <Setting email={email}/>
 
     }
 
@@ -66,7 +69,7 @@ const Dashboard = () => {
                         <li onClick={() => { featureHandler("UpApp") }}>My Appointments</li>
                         <li onClick={() => { featureHandler("Sessions") }}>My Sessions</li>
                         <li onClick={() => { featureHandler("PatientHistory") }}>My Patients</li>
-                        <li onClick={() => { featureHandler("Setting") }}>Settings</li>
+                        <li onClick={() => { featureHandler("Setting") }}>Update Profile</li>
                     </ul>
                 </nav>
             </div>

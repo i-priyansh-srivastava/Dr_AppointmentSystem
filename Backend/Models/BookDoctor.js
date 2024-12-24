@@ -29,6 +29,10 @@ const BoookDoctorScehma = new mongoose.Schema({
         // unique:true,  can be multiple appointments from single user
         required:true,
     },
+    PatientEmail:{
+        type:String, 
+        required:true,
+    },
     Symptoms:{
         type:String, 
         required:true,

@@ -4,11 +4,12 @@ import Speciality from "./Speciality.js";
 import Cards from "./Cards.js";
 import ClinicVisit from "./ClinicVisit.js";
 
-const AllDoctors = () => {
+const AllDoctors = (props) => {
     const [speciality, setSpeciality] = useState("All Doctors");
     const [showForm, setForm] = useState(false);
     const [formId, setFormId] = useState('');
     const [doctors, setDoctors] = useState([]);
+    const userEmail = props.email;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,7 +37,7 @@ const AllDoctors = () => {
                 </div>
             ) : (
                 <div>
-                    <ClinicVisit formId={formId} setForm={setForm} />
+                    <ClinicVisit formId={formId} setForm={setForm} userEmail={userEmail} />
                 </div>
             )}
         </>
