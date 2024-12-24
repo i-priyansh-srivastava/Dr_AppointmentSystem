@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DriverDetails from "./DriverDetails"
+import DriverDetails from "./DriverDetails.js"
 import "../../styles/PatientStyle/DriverDetails.css"
 
 const Ambulance = () => {

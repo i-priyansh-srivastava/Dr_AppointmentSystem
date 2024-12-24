@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Speciality from "./Speciality";
-import Cards from "./Cards";
-import ClinicVisit from "./ClinicVisit";
+import Speciality from "./Speciality.js";
+import Cards from "./Cards.js";
+import ClinicVisit from "./ClinicVisit.js";
 
 const AllDoctors = () => {
     const [speciality, setSpeciality] = useState("All Doctors");

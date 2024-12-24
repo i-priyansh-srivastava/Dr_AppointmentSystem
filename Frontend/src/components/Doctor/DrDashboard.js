@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../../styles/DrStyle/DrDashboard.css"
 import drPic from "../../images/drPIC.avif"
-import PatientHistory from './PatientHistory';
-import DrContent from './DrContent';
+import PatientHistory from './PatientHistory.js';
+import DrContent from './DrContent.js';
 import MyAppointments from './MyAppointments.js';
 import DrSession from './DrSession.js'
 import Setting from "./DrSetting.js";

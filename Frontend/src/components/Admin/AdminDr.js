@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../../styles/AdminStyle/AdminDr.css"
-import AdminAddDr from './AdminAddDr';
+import AdminAddDr from './AdminAddDr.js';
 import axios from 'axios';
 
 const AdminDr = (props) => {

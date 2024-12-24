@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/AdminStyle/AdminDash.css";
 import axios from 'axios';
-import AdminContent from './AdminContent';
-import AdminDr from './AdminDr';
-import AdminSchedule from "./AdminSchedule";
-import AdminAppointment from "./AdminAppointment";
-import AdminPatient from "./AdminPatient";
+import AdminContent from './AdminContent.js';
+import AdminDr from './AdminDr.js';
+import AdminSchedule from "./AdminSchedule.js";
+import AdminAppointment from "./AdminAppointment.js";
+import AdminPatient from "./AdminPatient.js";
 import { Link } from 'react-router-dom';
 
 const AdminDash = () => {

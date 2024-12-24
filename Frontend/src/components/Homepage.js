@@ -1,10 +1,10 @@
-import Nav from "./Nav";
-import Brochure from "./Brochure";
-import Features from "./Features";
-import Footer from "./Footer";
-import Faqs from "./Faqs";
-import Featuredata from "../Data/Featuredata";
-import Faqdata from "../Data/Faqdata";
+import Nav from "./Nav.js";
+import Brochure from "./Brochure.js";
+import Features from "./Features.js";
+import Footer from "./Footer.js";
+import Faqs from "./Faqs.js";
+import Featuredata from "../Data/Featuredata.js";
+import Faqdata from "../Data/Faqdata.js";
 import "../styles/Homepage.css"
 
 import {toast } from 'react-toastify';
