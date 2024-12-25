@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import "../../styles/DrStyle/DrDashboard.css"
 import drPic from "../../images/drPIC.avif"
 import PatientHistory from './PatientHistory.js';
@@ -12,34 +13,57 @@ const Dashboard = () => {
 
     const location = useLocation();
     const email = location.state?.email;
+    useEffect(() => {
+        if (email) {
+            console.log("Email for this user:", email);
+        }
+    }, [email]);
+
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        if (!email) {
+            console.error("Email is undefined. Cannot fetch user data.");
+            return;
+        }
+    
+        const fetchUser = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/v1/getUser/${email}`);
+                setUser(response.data.user);
+            } catch (e) {
+                console.error("Error fetching user:", e);
+            }
+        };
+    
+        fetchUser();
+    }, [email]);
+    
 
     const consultations = [
         { date: "2024-11-01", patient: "Dr. Smith", diagnosis: "Cold", treatment: "Rest and medication", phone: 8754124623 },
         { date: "2024-10-20", patient: "Dr. Adams", diagnosis: "Flu", treatment: "Flu vaccine and fluids", phone: 9641943168 },
     ];
 
-  
-      const handleAccept = (appointment, date, time) => {
+
+    const handleAccept = (appointment, date, time) => {
         console.log("Accepted appointment:", appointment);
         if (date && time) {
-          console.log("Scheduled for:", date, time);
+            console.log("Scheduled for:", date, time);
         }
-      };
-      
-      const handleReject = (appointment) => {
+    };
+
+    const handleReject = (appointment) => {
         console.log("Rejected appointment:", appointment);
-      };
-      
-      <MyAppointments onAccept={handleAccept} onReject={handleReject}/>
-    
-      let drID= `673492c16235013d47216c2b`;
+    };
+
+    <MyAppointments onAccept={handleAccept} onReject={handleReject} />
 
     const featureMap = {
         DrContent: <DrContent />,
         PatientHistory: <PatientHistory consultations={consultations} />,
-        UpApp: <MyAppointments/>,
+        UpApp: <MyAppointments />,
         Sessions: <DrSession />,
-        Setting: <Setting email={email}/>
+        Setting: <Setting email={email} />
 
     }
 
@@ -56,8 +80,14 @@ const Dashboard = () => {
                 <div className="DRprofile">
                     <img className="DRprofile-pic" src={drPic} alt="Profile" />
                     <div className='DrProfile'>
-                        <h3>Test Doctor..</h3>
-                        <p>doctor@edoc.com</p>
+                        {user ? (
+                            <>
+                                <h3>{user.username}</h3>
+                                <p>{user.email}</p>
+                            </>
+                        ) : (
+                            <p>Loading profile...</p>
+                        )}
                     </div>
                 </div>
                 <Link to="/">
