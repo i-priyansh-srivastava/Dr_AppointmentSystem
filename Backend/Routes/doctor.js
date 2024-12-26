@@ -51,7 +51,7 @@ router.get('/call-ambulance', getRandomDriver);
 
 
 
-router.get('/get_documents', getDocuments);
+router.get('/get_documents/:email', getDocuments);
 router.post('/documents/upload', upload.single('file'), uploadDocument);
 router.delete('/documents/:fileName', deleteDocument);
 

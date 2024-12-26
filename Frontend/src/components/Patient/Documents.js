@@ -3,15 +3,15 @@ import axios from "axios";
 import "../../styles/PatientStyle/Documents.css";
 import { Link } from "react-router-dom";
 
-const Documents = () => {
+const Documents = (props) => {
+    const email = props.email;
     const [documents, setDocuments] = useState([]);
     const [file, setFile] = useState(null);
-
 
     useEffect(() => {
         const fetchDocuments = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/v1/get_documents`);
+                const response = await axios.get(`http://localhost:5000/api/v1/get_documents/${email}`);
                 setDocuments(response.data);
             } catch (error) {
                 console.error("Error fetching documents:", error);
@@ -19,7 +19,7 @@ const Documents = () => {
         };
 
         fetchDocuments();
-    }, []);
+    }, [email]);
 
     const handleFileUpload = async (e) => {
         e.preventDefault();
@@ -30,6 +30,7 @@ const Documents = () => {
 
         const formData = new FormData();
         formData.append("file", file);
+        formData.append("email", email);
 
         try {
             const response = await axios.post("http://localhost:5000/api/v1/documents/upload", formData, {

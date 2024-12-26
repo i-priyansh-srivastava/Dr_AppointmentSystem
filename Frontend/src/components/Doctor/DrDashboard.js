@@ -60,7 +60,7 @@ const Dashboard = () => {
 
     const featureMap = {
         DrContent: <DrContent />,
-        PatientHistory: <PatientHistory consultations={consultations} />,
+        PatientHistory: <PatientHistory email={email} />,
         UpApp: <MyAppointments email={email}/>,
         Sessions: <DrSession email={email}/>,
         Setting: <Setting email={email} />

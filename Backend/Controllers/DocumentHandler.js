@@ -9,9 +9,13 @@ cloudinary.config({
 });
 
 const Document = require('../Models/Documents'); 
+
 const uploadDocument = async (req, res) => {
     try {
         const file = req.file; 
+        const email = req.body.email;
+        console.log(email);
+        
         if (!file) {
             return res.status(400).json({ message: 'No file uploaded' });
         }
@@ -24,6 +28,7 @@ const uploadDocument = async (req, res) => {
 
 
         const newDocument = new Document({
+            UserEmail : email,
             DocName: path.basename(result.public_id),
             DocUrl: result.secure_url,
             DocDate: new Date(),
@@ -46,13 +51,16 @@ const uploadDocument = async (req, res) => {
 
 const getDocuments = async (req, res) => {
     try {
-        const documents = await Document.find(); 
+        const { email } = req.params;
+        const documents = await Document.find({ UserEmail: email }); 
         res.status(200).json(documents);
     } catch (error) {
         console.error('Error fetching documents:', error);
         res.status(500).json({ message: 'Failed to fetch documents', error });
     }
 };
+
+
 
 const deleteDocument = async (req, res) => {
     const { fileName } = req.params;
