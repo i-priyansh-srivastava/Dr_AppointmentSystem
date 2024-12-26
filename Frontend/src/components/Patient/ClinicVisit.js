@@ -9,13 +9,16 @@ const ClinicVisit = (props) => {
     const [Data, setData] = useState('');
     const [showModal, setShowModal] = useState(false);
     const userEmail = props.userEmail;
+    const formEmail = props.formEmail;
+    console.log(userEmail);
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const resp = await axios.get('http://localhost:5000/api/v1/allDoctor');
                 setDr(resp.data);
 
-                const DrBook = resp.data.find((doc) => doc.id === props.formId);
+                const DrBook = resp.data.find((doc) => doc.email == formEmail);
                 setData(DrBook);
 
             }
@@ -25,7 +28,7 @@ const ClinicVisit = (props) => {
             }
         };
         fetchData();
-    }, [props.formId]);
+    }, [formEmail]);
     
 
     useEffect(() => {
@@ -58,81 +61,6 @@ const ClinicVisit = (props) => {
     const [ContactNo, setContactNo] = useState('');
     // const [DrEmail, setEmail] = useState('');
     const [Symptoms, setSymptoms] = useState('');
-
-    // const handlePayment = async () => {
-    //     try {
-    //         if (!Data) {
-    //             toast.warn("Doctor details are missing.");
-    //             return;
-    //         }
-
-    //         toast.info("Razorpay payment initiated.");
-    //         console.log("nhi pahuchha");
-
-
-    //         const response = await axios.post('http://localhost:5000/api/v1/create-order', {
-    //             amount: Data.consultationFee * 100,
-    //         });
-    //         console.log("pahuchh gya");
-
-    //         const orderId  = response.data.orderId;
-
-    //         console.log(orderId + "  " + Data.consultationFee * 100);
-
-    //         // const options = {
-    //         //     key: `rzp_test_mCpQ8Ow7U6g6oR`,
-    //         //     amount: Data.consultationFee * 100,
-    //         //     currency: 'INR',
-    //         //     name: Data.name,
-    //         //     description: 'Consultation Fee Payment',
-    //         //     order_id: orderId,
-    //         //     handler: async function (response) {
-    //         //         const paymentData = {
-    //         //             paymentId: response.razorpay_payment_id,
-    //         //             orderId: response.razorpay_order_id,
-    //         //             signature: response.razorpay_signature,
-    //         //         };
-
-    //         //         console.log(paymentData);
-
-
-    //         //         try {
-    //         //             await axios.post('http://localhost:5000/verify-payment', paymentData);
-    //         //             toast.success("Payment successful! Appointment confirmed.");
-    //         //             setShowModal(false);
-    //         //         } catch (error) {
-    //         //             console.error("Payment verification failed:", error);
-    //         //             toast.error("Payment verification failed. Please contact support.");
-    //         //         }
-    //         //     },
-    //         //     prefill: {
-    //         //         name: PatientName,
-    //         //         email: DrEmail,
-    //         //         contact: ContactNo.replace(/[^0-9]/g, ''),
-    //         //     },
-    //         //     theme: {
-    //         //         color: '#3399cc',
-    //         //     },
-    //         // };
-
-    //         // console.log(options);
-
-
-    //         // const razorpay = new window.Razorpay(options);
-
-    //         // razorpay.on('payment.failed', function (response) {
-    //         //     console.error("Payment failed:", response.error);
-    //         //     toast.error("Payment failed. Please try again.");
-    //         // });
-
-    //         // razorpay.open();
-    //     }
-
-    //     catch (error) {
-    //         console.error("Error initiating Razorpay payment:", error.response?.data || error.message);
-    //         toast.error("Failed to initiate payment. Please try again later.");
-    //     }
-    // };
 
 
     const handlePayment = async () => {

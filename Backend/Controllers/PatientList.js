@@ -3,10 +3,10 @@ const PatientData = require("../Models/BookDoctor");
 
 const PatList = async (req, res) => {
   try {
-    const { DrName, Status } = req.query;
+    const { DrEmail, Status } = req.query;
 
     const query = {};
-    if (DrName) query.DoctorName = DrName;
+    if (DrEmail) query.DrEmail = DrEmail; 
     if (Status) query.Status = Status;
 
     const list = await PatientData.find(query);

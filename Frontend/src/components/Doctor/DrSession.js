@@ -3,7 +3,7 @@ import "../../styles/DrStyle/DrSession.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const MySessions = ({ sessions }) => {
+const MySessions = ({email}) => {
 
   const [OKList, setOKList] = useState([]);
 
@@ -13,7 +13,7 @@ const MySessions = ({ sessions }) => {
         const OKPatient = await axios.get('http://localhost:5000/api/v1/patient_request', {
           params: { DrName: "Mahirat", Status: "Accepted" },
         });
-        const myOKPatient = OKPatient.data.filter((it) => it.DoctorName === "Mahirat" && it.Status === "Accepted")
+        const myOKPatient = OKPatient.data.filter((it) => it.DrEmail == email && it.Status === "Accepted")
         setOKList(myOKPatient);
       } catch (error) {
         console.error("Error fetching sessions:", error);
@@ -34,7 +34,8 @@ const MySessions = ({ sessions }) => {
             <th>Time</th>
             <th>Patient Name</th>
             <th>Contact</th>
-            <th>Platform</th>
+            <th>Reason for visit</th>
+            {/* <th>Platform</th> */}
           </tr>
         </thead>
         <tbody>
@@ -44,11 +45,12 @@ const MySessions = ({ sessions }) => {
               <td>{it.AppointmentTime}</td>
               <td>{it.PatientName}</td>
               <td>{it.ContactNo}</td>
-              <td>
+              <td>{it.Symptoms}</td>
+              {/* <td>
                 <a>
                   Join on 
                 </a>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>

@@ -4,10 +4,12 @@ import { toast } from "react-toastify"
 const Card = (props) => {
     const formHandler = (id)=>{
         props.setForm(true)
-        props.setFormId(id)
+        props.setEmail(props.individual.email)
     }
 
     const onlineConsultation = ()=>{
+        console.log(props.individual.email);
+        
         toast.info("Under construction 🚧—cool stuff is on the way!")
     }
     return (

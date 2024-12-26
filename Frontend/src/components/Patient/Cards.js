@@ -10,13 +10,13 @@ const Cards = (props) => {
     
     
     const setForm = props.setForm
-    const setFormId= props.setFormId
+    const setEmail= props.setEmail
 
     return (
 
         <div className="cardContainer">
             {filteredData.map((individual) => (
-                <Card key={individual.id} individual={individual} setForm={setForm} setFormId={setFormId} />
+                <Card key={individual.id} individual={individual} setForm={setForm} setEmail={setEmail} />
             ))}
         </div>
 

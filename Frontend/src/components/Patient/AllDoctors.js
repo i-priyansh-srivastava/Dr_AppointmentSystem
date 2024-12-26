@@ -7,7 +7,7 @@ import ClinicVisit from "./ClinicVisit.js";
 const AllDoctors = (props) => {
     const [speciality, setSpeciality] = useState("All Doctors");
     const [showForm, setForm] = useState(false);
-    const [formId, setFormId] = useState('');
+    const [formEmail, setEmail] = useState('');
     const [doctors, setDoctors] = useState([]);
     const userEmail = props.email;
 
@@ -33,11 +33,11 @@ const AllDoctors = (props) => {
             {!showForm ? (
                 <div>
                     <Speciality setSpeciality={setSpeciality} />
-                    <Cards doctors={doctors} speciality={speciality} setForm={setForm} setFormId={setFormId} />
+                    <Cards doctors={doctors} speciality={speciality} setForm={setForm} setEmail={setEmail} />
                 </div>
             ) : (
                 <div>
-                    <ClinicVisit formId={formId} setForm={setForm} userEmail={userEmail} />
+                    <ClinicVisit setForm={setForm} userEmail={userEmail} formEmail={formEmail}/>
                 </div>
             )}
         </>

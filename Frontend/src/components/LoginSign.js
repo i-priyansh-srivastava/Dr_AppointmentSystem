@@ -44,7 +44,7 @@ const LoginSign = (props) => {
                 navigate(roleMap[response.data.role], { state: { email: response.data.email } });
                 setEmail('');
                 setPassword('');
-            }
+            }   
         } catch (error) {
             toast.error('Login failed. Please try again.');
         }

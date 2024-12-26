@@ -3,7 +3,7 @@ import "../../styles/DrStyle/MyAppointments.css";
 import { Link } from "react-router-dom"
 import axios from "axios";
 
-const MyAppointments = ({ onAccept, onReject }) => {
+const MyAppointments = ({ email, onAccept, onReject }) => {
 
   const [appointmentList, setList] = useState([]);
 
@@ -11,9 +11,9 @@ const MyAppointments = ({ onAccept, onReject }) => {
     const PatientList = async () => {
       try {
         const allPatient = await axios.get('http://localhost:5000/api/v1/patient_request', {
-          params: { DrName: "Shyamas", Status: "Pending" },
+          params: { DrEmail: email, Status: "Pending" },
         });
-        const myPatient = allPatient.data.filter((it) => it.DoctorName == "Shyamas" && it.Status === "Pending")
+        const myPatient = allPatient.data.filter((it) => it.DrEmail == email && it.Status === "Pending")
         setList(myPatient);
       }
       catch (error) {
