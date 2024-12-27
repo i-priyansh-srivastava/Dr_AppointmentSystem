@@ -1,0 +1,52 @@
+.documentsListContainer {
+    padding: 20px;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-left: 35vw;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+.documentsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.documentsTable thead tr {
+    background-color: #333;
+    color: white;
+}
+
+.documentsTable th,
+.documentsTable td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.documentsTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.documentsTable tbody tr:hover {
+    background-color: #e1f7d5;
+}
+
+.documentsTable tbody tr td {
+    color: #555;
+}

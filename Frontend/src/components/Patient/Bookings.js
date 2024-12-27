@@ -32,7 +32,6 @@ const Bookings = (props) => {
     }
     try {
       console.log("Deleting appointment with ID:", ID);
-      // console.log(`http://localhost:5000/api/v1/cancel_booking`);
       await axios.delete(`http://localhost:5000/api/v1/cancel_booking/${ID}`);
       setBookings((prev) => prev.filter((it) => it._id !== ID))
       toast.info("Appointment cancelled");
@@ -40,7 +39,6 @@ const Bookings = (props) => {
     }
 
     catch (e) {
-      // console.log("Deleting appointment with ID:", ID);
       console.log(e);
       toast.error("Failed to cancel appointment.");
     }

@@ -59,7 +59,6 @@ const ClinicVisit = (props) => {
     const [AppointmentDate, setAppointmentDate] = useState('');
     const [AppointmentTime, setAppointmentTime] = useState('');
     const [ContactNo, setContactNo] = useState('');
-    // const [DrEmail, setEmail] = useState('');
     const [Symptoms, setSymptoms] = useState('');
 
 
@@ -140,13 +139,12 @@ const ClinicVisit = (props) => {
 
         try {
             await axios.post('http://localhost:5000/api/v1/patient_dashboard', {
-                doctorId: Data.id,
                 DoctorName: Data.name,
-                DrEmail : Data.email,
                 PatientName,
                 AppointmentDate,
                 AppointmentTime,
                 ContactNo,
+                DrEmail : Data.email,
                 PatientEmail:userEmail,
                 Symptoms,
             });
@@ -158,7 +156,6 @@ const ClinicVisit = (props) => {
             setAppointmentDate('');
             setAppointmentTime('');
             setContactNo('');
-            setEmail('');
             setSymptoms('');
         } catch (error) {
             console.error("Error booking appointment:", error.response?.data || error.message);

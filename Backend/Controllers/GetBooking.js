@@ -4,11 +4,11 @@ const getMyBooking = async (req, res) => {
     
     try {
         const { patientName } = req.query;
-
+        
         const bookings = patientName
-            ? await BookingModel.find({ PatientName: patientName })
-            : await BookingModel.find();
-
+        ? await BookingModel.find({ PatientName: patientName })
+        : await BookingModel.find();
+        
         if (bookings.length === 0) {
             return res.status(404).json({ message: 'No bookings found' });
         }

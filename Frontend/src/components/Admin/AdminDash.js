@@ -3,7 +3,7 @@ import "../../styles/AdminStyle/AdminDash.css";
 import axios from 'axios';
 import AdminContent from './AdminContent.js';
 import AdminDr from './AdminDr.js';
-import AdminSchedule from "./AdminSchedule.js";
+import AdminAllDocs from "./AdminAllDocs.js";
 import AdminAppointment from "./AdminAppointment.js";
 import AdminPatient from "./AdminPatient.js";
 import { Link } from 'react-router-dom';
@@ -30,7 +30,7 @@ const AdminDash = () => {
     const featureMap = {
         Dashboard: <AdminContent />,
         Doctor: <AdminDr DrData={DrData} />,
-        Schedule: <AdminSchedule />,
+        Documents: <AdminAllDocs />,
         Appointment: <AdminAppointment />,
         Users: <AdminPatient />
     };
@@ -60,7 +60,7 @@ const AdminDash = () => {
                     <ul>
                         <li onClick={() => handleBtnPress("Dashboard")}>Dashboard</li>
                         <li onClick={() => handleBtnPress("Doctor")}>Doctors</li>
-                        <li onClick={() => handleBtnPress("Schedule")}>Schedule</li>
+                        <li onClick={() => handleBtnPress("Documents")}>Documents</li>
                         <li onClick={() => handleBtnPress("Appointment")}>Appointment</li>
                         <li onClick={() => handleBtnPress("Users")}>Users</li>
                     </ul>

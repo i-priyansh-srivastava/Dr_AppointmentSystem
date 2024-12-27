@@ -1,58 +1,96 @@
-.adminBackBtn {
-    border: none;
-    color: blue;
-    position: absolute;
-    left: 23vw;
-    top: 6vh;
-}
-
-
 .addDRform {
-    max-width: 400px;
-    margin: 7vh 46vw;
-    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    margin-left: 35vw;
     background-color: #f9f9f9;
-    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: 'Arial', sans-serif;
 }
 
 .addDRform h2 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 1.8rem;
     color: #333;
-}
-
-.addDRform form {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 .addDRform label {
-    margin-bottom: 8px;
-    font-weight: bold;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
     color: #555;
 }
 
-.addDRform input,
-.addDRform textarea {
-    margin-bottom: 16px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+.addDRform input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
 }
 
-.addDRform .submitBtn {
-    background-color: #4caf50;
+.addDRform input:focus {
+    border: 1px solid #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #007bff;
     color: white;
-    padding: 12px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.addDRform .submitBtn:hover {
-    background-color: #45a049;
+.submitBtn:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+.adminBackBtn {
+    position:sticky;
+    top: 10vh;
+    left: 20vw;
+    background-color: #0d7720;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.adminBackBtn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .addDRform {
+        padding: 1.5rem;
+    }
+
+    .addDRform h2 {
+        font-size: 1.5rem;
+    }
+
+    .submitBtn, 
+    .adminBackBtn {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
 }

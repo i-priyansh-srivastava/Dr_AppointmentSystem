@@ -11,7 +11,7 @@ cloudinary.config({
 
 const uploadDocument = async (req, res) => {
     try {
-        const file = req.file; 
+        const file = req.file;
         const email = req.body.email;
 
         if (!file) {
@@ -46,8 +46,23 @@ const uploadDocument = async (req, res) => {
 
 const getDocuments = async (req, res) => {
     try {
-        const { email } = req.params;
-        const documents = await Document.find({ UserEmail: email });
+        const documents = req.params.email
+            ? await Document.find({ UserEmail: req.params.email })
+            : await Document.find();
+        res.status(200).json(documents);
+    } catch (error) {
+        console.error('Error fetching documents:', error);
+        res.status(500).json({ message: 'Failed to fetch documents', error });
+    }
+};
+
+const getAllDocuments = async (req, res) => {
+    try {
+        const documents = await Document.find();
+
+        if (documents.length === 0) {
+            return res.status(404).json({ message: 'No documents found' });
+        }
         res.status(200).json(documents);
     } catch (error) {
         console.error('Error fetching documents:', error);
@@ -78,5 +93,6 @@ const deleteDocument = async (req, res) => {
 module.exports = {
     uploadDocument,
     getDocuments,
+    getAllDocuments,
     deleteDocument,
 };

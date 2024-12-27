@@ -1,7 +1,7 @@
 
 const express =require('express')
 const  { logIn, signUp, updateUser } =require('../Controllers/userController')
-const { getUserByEmail }= require("../Controllers/GetUserDetails")
+const { getUserByEmail, getUsersByRole }= require("../Controllers/GetUserDetails")
 const  getAllDoctors =require('../Controllers/AllDoctors')
 const deleteDoc = require("../Controllers/DeleteDr")
 const { addDr } = require("../Controllers/AddDr")
@@ -11,7 +11,7 @@ const { PatList , StatusUpdate } = require( "../Controllers/PatientList")
 const { PutProfile, GetProfile } = require('../Controllers/UpdateDrProfile')
 const { getRandomDriver } = require("../Controllers/Ambulance")
 
-const { uploadDocument, getDocuments, deleteDocument } = require("../Controllers/DocumentHandler")
+const { uploadDocument, getDocuments, getAllDocuments, deleteDocument } = require("../Controllers/DocumentHandler")
 
 const { createOrder } = require('../Controllers/Razorpay')
 
@@ -27,6 +27,7 @@ router.post('/login',logIn);
 router.post('/signup',signUp);
 
 router.get("/getUser/:email", getUserByEmail);
+router.get("/get_users_by_role" , getUsersByRole)
 
 router.patch("/updateUser/:email" , updateUser);
 
@@ -35,7 +36,7 @@ router.get('/allDoctor',getAllDoctors);
 router.delete('/allDoctor/:id', deleteDoc);
 router.post('/add_doctor', addDr)
 
-router.get('/bookings/',getMyBooking);
+router.get('/bookings',getMyBooking);
 router.delete('/cancel_booking/:id', cancelBooking)
 
 router.post('/patient_dashboard', BookDr);
@@ -50,7 +51,7 @@ router.put('/getDr_profile/:id', PutProfile)
 router.get('/call-ambulance', getRandomDriver);
 
 
-
+router.get('/allDocuments', getAllDocuments);
 router.get('/get_documents/:email', getDocuments);
 router.post('/documents/upload', upload.single('file'), uploadDocument);
 router.delete('/documents/:fileName', deleteDocument);
