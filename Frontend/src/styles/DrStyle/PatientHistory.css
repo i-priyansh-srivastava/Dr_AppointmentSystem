@@ -1,41 +1,161 @@
-.patient-history {
-  width: 80vw;
-  position: absolute;
-  left: 19vw;
-  padding: 20px;
+.my-appointments {
+  margin: 20px auto;
+  max-width: 900px;
   font-family: Arial, sans-serif;
+}
+
+.my-appointments h2 {
+  text-align: center;
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.appointment-table th, 
+.appointment-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.appointment-table th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+}
+
+.appointment-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.appointment-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.button-82-pushable {
+  background: #007bff;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.button-82-pushable:hover {
+  background-color: #0056b3;
+}
+
+.patient-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.patient-details {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.patient-details h2 {
+  color: #007bff;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.patient-details p {
+  font-size: 1rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.patient-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.patient-details ul li {
+  margin: 5px 0;
+}
+
+.patient-details ul li a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.patient-details ul li a:hover {
+  text-decoration: underline;
+}
+
+.closeBtn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+
+.closeBtn:hover {
+  background-color: #cc0000;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  .appointment-table th, 
+  .appointment-table td {
+    font-size: 0.9rem;
+    padding: 8px;
   }
-  
-  .patient-history h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+
+  .button-82-pushable {
+    font-size: 0.9rem;
+    padding: 6px 12px;
   }
-  
-  .consultation-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+
+  .patient-details {
+    padding: 15px;
   }
-  
-  .consultation-table th,
-  .consultation-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+
+  .patient-details h2 {
+    font-size: 1.2rem;
   }
-  
-  .consultation-table th {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
+
+  .patient-details p {
+    font-size: 0.9rem;
   }
-  
-  .consultation-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
   }
-  
-  .consultation-table tr:hover {
-    background-color: #ddd;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
+}
