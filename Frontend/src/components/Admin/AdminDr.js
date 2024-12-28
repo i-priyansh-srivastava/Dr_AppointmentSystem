@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import "../../styles/AdminStyle/AdminDr.css"
+import "../../styles/AdminStyle/AdminDr.css";
 import AdminAddDr from './AdminAddDr.js';
 import axios from 'axios';
 
 const AdminDr = (props) => {
     const [DrData, setDrData] = useState(props.DrData);
+    const [searchTerm, setSearchTerm] = useState('');
     const [showForm, setForm] = useState(false);
 
     const FormHandler = () => {
@@ -15,12 +16,10 @@ const AdminDr = (props) => {
         try {
             console.log(id);
             
-            await axios.delete(`http://localhost:5000/api/v1/allDoctor/${id}`)
+            await axios.delete(`http://localhost:5000/api/v1/allDoctor/${id}`);
 
-            
             setDrData((prevDrData) => prevDrData.filter((doctor) => doctor._id !== id));
             console.log(DrData);
-            
 
             alert('Doctor deleted successfully');
         } catch (error) {
@@ -28,6 +27,15 @@ const AdminDr = (props) => {
             alert('Failed to delete doctor. Please try again.');
         }
     };
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const filteredDoctors = DrData.filter((doctor) => 
+        doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doctor.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <>
@@ -38,6 +46,8 @@ const AdminDr = (props) => {
                             className="headerInput"
                             type="text"
                             placeholder="Search Doctor name or Email"
+                            value={searchTerm}
+                            onChange={handleSearch}
                         />
                         <button className="search-btn">Search</button>
                         <button className="add-new-btn" onClick={FormHandler}>
@@ -57,10 +67,8 @@ const AdminDr = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {DrData.map((iterator) => (
-                                
+                                {filteredDoctors.map((iterator) => (
                                     <tr key={iterator.id}>
-                                        
                                         <td>{iterator.name}</td>
                                         <td>{iterator.email}</td>
                                         <td>{iterator.specialist}</td>

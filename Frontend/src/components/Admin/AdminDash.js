@@ -7,6 +7,7 @@ import AdminAllDocs from "./AdminAllDocs.js";
 import AdminAppointment from "./AdminAppointment.js";
 import AdminPatient from "./AdminPatient.js";
 import { Link } from 'react-router-dom';
+import adminPic from "../../images/adminProfile.png"
 
 const AdminDash = () => {
     const [btnPress, setBtn] = useState("Dashboard");
@@ -43,14 +44,14 @@ const AdminDash = () => {
         return <div>Loading...</div>;
     }
 
+
     return (
         <div className="adminDashboard">
             <div className="adminSidebar">
                 <div className="adminprofile">
-                    <img className="adminprofile-pic" src="https://via.placeholder.com/50" alt="Profile" />
+                    <   img className="adminprofile-pic" src={adminPic} alt="Profile" />
                     <div className='AdminDetails'>
-                        <h3>Administrator</h3>
-                        <p>admin@edoc.com</p>
+                        <h3>Admin</h3>
                     </div>
                 </div>
                 <Link to="/">
