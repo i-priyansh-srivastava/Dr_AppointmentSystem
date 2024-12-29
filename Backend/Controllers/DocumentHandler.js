@@ -2,66 +2,42 @@ const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
-const Document = require('../Models/Documents');
+const Document = require('../Models/Documents.js');
 
-// cloudinary.config({
-//     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-//     api_key: process.env.CLOUDINARY_API_KEY,
-//     api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
-
-
-cloudinary.config({
-    cloud_name: 'drh73kwiz',
-    api_key: '623384858527233',
-    api_secret: 'df042eBGFRK5R-M_hHmOj-Pbtz8',
-});
 
 const uploadDocument = async (req, res) => {
     try {
+        const { email, DocName } = req.body;
         const file = req.file;
-        const email = req.body.email;
-        const docName = req.body.DocName;
 
         if (!file) {
-            return res.status(400).json({ message: 'No file uploaded' });
+            return res.status(400).json({ error: 'File not provided' });
         }
 
-        const result = await cloudinary.uploader.upload(file.path, {
-            folder: 'documents',
-            resource_type: 'raw',
-        });
+        const docUrl = file.path;
 
         const newDocument = new Document({
-            UserEmail: email,
-            DocName: docName || path.basename(result.public_id),
-            DocUrl: result.secure_url,
-            DocDate: new Date(),
+            UserEmail : email,
+            DocName,
+            DocUrl: docUrl,
+            DocDate : new Date(),
         });
 
         await newDocument.save();
 
-        fs.unlinkSync(file.path);
-
-        res.status(201).json({
-            message: 'File uploaded successfully',
-            document: newDocument,
-        });
+        res.status(201).json({ message: 'File uploaded successfully', document: newDocument });
     } catch (error) {
-        console.error('Error uploading file:', error);
-        res.status(500).json({ message: 'Failed to upload file', error });
+        res.status(500).json({ error: 'Error uploading file', details: error.message });
     }
 };
 
 const getDocuments = async (req, res) => {
     try {
-        const documents = req.params.email
-            ? await Document.find({ UserEmail: req.params.email })
-            : await Document.find();
+        const { email } = req.params;
+        const documents = await Document.find({ UserEmail :email });
         res.status(200).json(documents);
     } catch (error) {
-        console.error('Error fetching documents:', error);
-        res.status(500).json({ message: 'Failed to fetch documents', error });
+        res.status(500).json({ error: 'Error fetching documents' });
     }
 };
 
@@ -80,22 +56,23 @@ const getAllDocuments = async (req, res) => {
 };
 
 const deleteDocument = async (req, res) => {
-    const { fileName } = req.params;
-
     try {
+        const { fileName } = req.params;
+
         const document = await Document.findOne({ DocName: fileName });
         if (!document) {
-            return res.status(404).json({ message: 'Document not found' });
+            return res.status(404).json({ error: 'Document not found' });
         }
 
-        await cloudinary.uploader.destroy(`documents/${fileName}`);
+        const publicId = document.DocUrl.split('/').slice(-1)[0].split('.')[0];
 
-        await Document.deleteOne({ DocName: fileName });
+        await cloudinary.uploader.destroy(`patient_documents/${publicId}`, { resource_type: 'raw' });
 
-        res.status(200).json({ message: 'File deleted successfully' });
+        await Document.deleteOne({ _id: document._id });
+
+        res.status(200).json({ message: 'Document deleted successfully' });
     } catch (error) {
-        console.error('Error deleting file:', error);
-        res.status(500).json({ message: 'Failed to delete file', error });
+        res.status(500).json({ error: 'Error deleting document', details: error.message });
     }
 };
 

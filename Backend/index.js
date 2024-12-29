@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors');
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,9 @@ const dbConnect = require('./Configs/database');
 dbConnect();
 const PORT = process.env.PORT
 
+
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 
 

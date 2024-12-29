@@ -32,7 +32,7 @@ const Documents = (props) => {
         formData.append("file", file);
         formData.append("email", email);
         formData.append("DocName", file.name);
-        
+
 
         try {
             const response = await axios.post("http://localhost:5000/api/v1/documents/upload", formData, {
@@ -73,9 +73,9 @@ const Documents = (props) => {
                         </div>
                         <button
                             className="ViewBtn"
-                            onClick={() => window.open(doc.DocUrl, "_blank")}
-                        >
-                           <Link to="/download/:fileName">View</Link></button>
+                            onClick={() => window.open(doc.DocUrl, "_blank")}>
+                            View
+                        </button>
                         <button className="delBtn" onClick={() => handleDelete(doc.DocName)}>
                             &#xf5de;
                         </button>

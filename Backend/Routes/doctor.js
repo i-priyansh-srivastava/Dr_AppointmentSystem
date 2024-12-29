@@ -51,23 +51,10 @@ router.put('/getDr_profile/:id', PutProfile)
 router.get('/call-ambulance', getRandomDriver);
 
 
+router.post('/documents/upload', upload.single('file'), uploadDocument);
 router.get('/allDocuments', getAllDocuments);
 router.get('/get_documents/:email', getDocuments);
-router.post('/documents/upload', upload.single('file'), uploadDocument);
 router.delete('/documents/:fileName', deleteDocument);
-
-// app.put("/api/v1/documents/update", async (req, res) => {
-//     const { oldName, newName } = req.body;
-//     try {
-//         await Document.updateOne({ DocName: oldName }, { DocName: newName });
-//         res.status(200).json({ message: "Document name updated successfully" });
-//     } catch (error) {
-//         console.error("Error updating document:", error);
-//         res.status(500).json({ message: "Failed to update document name" });
-//     }
-// });
-
-
 
 router.post('/create-order', createOrder);
 
