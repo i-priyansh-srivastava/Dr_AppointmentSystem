@@ -1,18 +1,27 @@
 const cloudinary = require('cloudinary').v2;
+require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
 const Document = require('../Models/Documents');
 
+// cloudinary.config({
+//     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//     api_key: process.env.CLOUDINARY_API_KEY,
+//     api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
+
+
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+    cloud_name: 'drh73kwiz',
+    api_key: '623384858527233',
+    api_secret: 'df042eBGFRK5R-M_hHmOj-Pbtz8',
 });
 
 const uploadDocument = async (req, res) => {
     try {
         const file = req.file;
         const email = req.body.email;
+        const docName = req.body.DocName;
 
         if (!file) {
             return res.status(400).json({ message: 'No file uploaded' });
@@ -25,7 +34,7 @@ const uploadDocument = async (req, res) => {
 
         const newDocument = new Document({
             UserEmail: email,
-            DocName: path.basename(result.public_id),
+            DocName: docName || path.basename(result.public_id),
             DocUrl: result.secure_url,
             DocDate: new Date(),
         });
