@@ -14,13 +14,23 @@ const uploadDocument = async (req, res) => {
             return res.status(400).json({ error: 'File not provided' });
         }
 
-        const docUrl = file.path;
+        const allowedTypes = ['image/png', 'image/jpeg', 'application/pdf'];
+        if (!allowedTypes.includes(file.mimetype)) {
+            return res.status(400).json({ error: 'Invalid file type. Only PNG, JPEG, and PDF are allowed.' });
+        }
+
+        const cloudinaryResponse = await cloudinary.uploader.upload(file.path, {
+            resource_type: file.mimetype === 'application/pdf' ? 'raw' : 'auto', 
+            folder: 'documents', 
+        });
+
+        const docUrl = cloudinaryResponse.secure_url;
 
         const newDocument = new Document({
-            UserEmail : email,
+            UserEmail: email,
             DocName,
             DocUrl: docUrl,
-            DocDate : new Date(),
+            DocDate: new Date(),
         });
 
         await newDocument.save();

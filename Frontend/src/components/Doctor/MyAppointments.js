@@ -68,12 +68,6 @@ const MyAppointments = ({ email, onAccept, onReject }) => {
     }
   };
 
-
-
-  const handleShowPatientCard = (patientName) => {
-    console.log("Showing patient card for", patientName);
-  };
-
   return (
     <div className="my-appointments">
       <h2>Requested Appointments</h2>
@@ -92,11 +86,6 @@ const MyAppointments = ({ email, onAccept, onReject }) => {
             <tr key={index}>
               <td>
                 <div>{it.PatientName}</div>
-                <div>
-                  <Link className="show-patient-card-btn" to={`#`}>
-                    Show Patient Card
-                  </Link>
-                </div>
               </td>
               <td>{new Date(it.AppointmentDate).toLocaleDateString()}</td>
               <td>{it.AppointmentTime}</td>

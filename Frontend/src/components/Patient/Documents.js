@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/PatientStyle/Documents.css";
-import { Link } from "react-router-dom";
 
 const Documents = (props) => {
     const email = props.email;
@@ -56,6 +55,14 @@ const Documents = (props) => {
             alert("Failed to delete file.");
         }
     };
+
+    const showDoc = (URL) => {
+        <iframe
+            src={URL}
+            style="width: 100%; height: 600px;"
+            frameborder="0">
+        </iframe>
+    }
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
