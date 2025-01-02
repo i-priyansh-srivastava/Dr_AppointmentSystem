@@ -1,20 +1,20 @@
 .brochure {
-    background-color: rgb(228, 234, 247);
+    background: linear-gradient(to right, rgba(23, 13, 7, 1), rgba(68, 44, 16, 1));
     color: #333;
     font-family: Arial, sans-serif;
     padding-top: 10vh;
 }
 
 .image {
-    width: 95vw;
-    height: 68vh;
+    width: 100%;
+    height: 92vh;
 }
 
 
 .homeContent {
     position: absolute;
-    top: 27.2vh;
-    left: 11vw;
+    top: 14rem;
+    left: 7rem;
     text-align: left;
     max-width: 500px;
 }
@@ -29,14 +29,11 @@
 .homeContent h3 {
     font-size: 2.6rem;
     font-weight: 600;
-    color: #333;
+    color: rgba(245, 220, 164, 255);
     margin: 0.2rem 0;
 }
 
 .Signbtn {
-    position: absolute;
-    top: 56vh;
-    left: 12vw;
     margin-top: 1rem;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -49,26 +46,106 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Style link inside button */
 .Signbtn a {
     text-decoration: none;
     color: inherit;
 }
 
-/* Hover effect for the sign-up button */
 .Signbtn:hover {
     background-color: #0056b3;
     transform: translateY(-3px);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .brochure {
         flex-direction: column;
         text-align: center;
     }
 
-    .content h2, .content h3 {
+    .brochure {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+    }
+
+    .image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+        filter: brightness(0.6);
+    }
+
+    .homeContent {
+        position: absolute;
+        top: 20%;
+        left: 5%;
+        text-align: left;
+        max-width: 40%;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .homeContent h2 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin: 0;
+        color: rgba(255, 223, 186, 1);
+        text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .homeContent h3 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        margin: 0.5rem 0;
+        color: rgba(255, 243, 216, 1);
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+    }
+
+    .Signbtn {
+        margin-top: 1rem;
+        background: rgba(255, 223, 186, 1);
+        color: rgba(23, 13, 7, 1);
+        border: none;
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .Signbtn:hover {
+        background-color: rgba(255, 243, 216, 1);
+        transform: scale(1.1);
+    }
+
+    .Signbtn a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    .content h2,
+    .content h3 {
         font-size: 1.8rem;
     }
 
@@ -77,6 +154,83 @@
     }
 
     .Signbtn {
+        display: none;
+    }
+}
+
+
+@media (max-width: 468px) {
+    .brochure {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 5vh;
+    }
+
+    .image {
+        width: 100vw;
+        height: 60vh;
+        object-fit: cover;
+        filter: brightness(0.5);
+    }
+
+    .homeContent {
+        position: relative;
+        top: 20%;
+        left: 3%;
+        text-align: center;
+        max-width: 90%;
+        margin: auto;
+    }
+
+    .homeContent h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: rgba(255, 223, 186, 1);
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+    }
+
+    .homeContent h3 {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: rgba(255, 243, 216, 1);
+        margin: 0.5rem 0;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+    }
+
+    .Signbtn {
+        margin-top: 1rem;
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+        background: rgba(255, 223, 186, 1);
+        color: rgba(23, 13, 7, 1);
+        border-radius: 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .Signbtn:hover {
+        background-color: rgba(255, 243, 216, 1);
+        transform: scale(1.05);
+    }
+
+    .Signbtn a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .content h2,
+    .content h3 {
+        font-size: 1.5rem;
+    }
+
+    .image {
         width: 100%;
+        height: 40vh;
+    }
+
+    .Signbtn {
+        display: block;
     }
 }

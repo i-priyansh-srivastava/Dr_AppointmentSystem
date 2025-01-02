@@ -1,6 +1,6 @@
 import '../styles/Brochure.css'
 import { Link } from 'react-router-dom';
-import bgImg from "../images/DASbg.png"
+import bgImg from "../images/brochureImg.jpg"
 
 
 const Brochure = (props) => {
@@ -14,13 +14,12 @@ const Brochure = (props) => {
             </div>
 
             <div className='homeContent'>
-                <h2>Quality Doctors</h2>
-                <h3>for your Best</h3>
-                <h3>Care</h3>
+                <h2>Seamless Healthcare at Your Fingertips</h2>
+                <h3>Your Health, Our Priority</h3>
+                <button className='Signbtn' onClick={SIgnFreeHandler}><Link to="/login">Sign up FREE today </Link></button>
 
             </div>
             <div>
-                <button className='Signbtn' onClick={SIgnFreeHandler}><Link to="/login">Sign up FREE today </Link></button>
             </div>
         </div>
     )

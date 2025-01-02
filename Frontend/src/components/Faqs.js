@@ -9,21 +9,32 @@ const Faqs = (props) => {
             ...prevState,
             [id]: !prevState[id],
         }));
-    }
+    };
+
     return (
-        <>
-            <h3 className="FaqHeading">Frequently Asked Questions</h3>
-            <div className="FaqContainer">
-                {props.Faqdata.map((item) => {
-                    return (
-                        <button className="FaqItem" onClick={() => answerHandler(item.id)}>
-                            {item.question} <span class="arrow">▼</span>
-                            {answer[item.id] && <p>{item.answer}</p>}
-                        </button>
-                    );
-                })}
+        <div className="FaqWrapper">
+            
+            <div className="FaqContent">
+                <h3 className="FaqHeading">Frequently Asked Questions</h3>
+                <div className="FaqContainer">
+                    {props.Faqdata.map((item) => (
+                        <div key={item.id} className="FaqItem">
+                            <button 
+                                className="FaqQuestion" 
+                                onClick={() => answerHandler(item.id)}
+                            >
+                                {item.question} <span className="arrow">▼</span>
+                            </button>
+                            {answer[item.id] && <p className="FaqAnswer">{item.answer}</p>}
+                        </div>
+                    ))}
+                </div>
             </div>
-        </>
+
+            <div className="ImageContainer">
+                
+            </div>
+        </div>
     );
 };
 

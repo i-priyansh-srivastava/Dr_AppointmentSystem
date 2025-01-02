@@ -1,24 +1,127 @@
-.cards {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  justify-content: space-between;
-  padding: 6vh 0 4vh 0;
-  background-color: rgb(228, 234, 247);
+.featuresContainer {
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+}
 
+.featuresHeading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .card {
-  background-color: rgb(17, 47, 88);
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 4vw;
-  margin: 2vh;
-  box-shadow: 10px 5px 13px grey;
-  color: white;
+  position: relative;
+  width: 300px;
+  padding: 2rem;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.circle {
+  position: absolute;
+  top: -1.8rem;
+  left: 8%;
+  transform: translateX(-50%);
+  width: 7rem;
+  height: 7rem;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 5px solid #fff;
+}
+
+.cardTitle {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cardTitle {
+    font-size: 1.3rem;
+  }
+
+  .featuresHeading {
+    font-size: 2rem;
+  }
 }
 
 
-.cardTitle{
-  color: rgb(75, 95, 123);
-  text-decoration: solid;
+@media (max-width: 468px) {
+  .featuresContainer {
+    padding: 1rem;
+    width: 100vw;
+  }
+
+  .featuresHeading {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .card {
+    width: 90%;
+    padding: 1rem;
+    margin: auto;
+  }
+
+  .circle {
+    width: 3rem;
+    height: 3rem;
+    top: -1.2rem;
+    left: 7%;
+    transform: translateX(-50%);
+  }
+
+  .cardTitle {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
 }

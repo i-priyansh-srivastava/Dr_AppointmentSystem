@@ -7,7 +7,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-container">
                 <div className="footer-section">
-                    <h2 className="footer-logo">Symbol</h2>
+                    <h2 className="footer-logo">Vital Visits</h2>
                     <p>Subscribe</p>
                     <div className="subscribe">
                         <input type="email" placeholder="Your Email" />
@@ -18,19 +18,19 @@ const Footer = () => {
                 <div className="footer-section">
                     <h3>Social</h3>
                     <ul>
-                        <li>LinkedIn</li>
-                        <li>Instagram</li>
-                        <li>Facebook</li>
+                        <li className='hoverLink'>LinkedIn</li>
+                        <li className='hoverLink'>Instagram</li>
+                        <li className='hoverLink'>Facebook</li>
                     </ul>
                 </div>
 
                 <div className="footer-section">
-                    <h3>Updet Link</h3>
+                    <h3>Update Link</h3>
                     <ul>
-                        <li><Link to="/about">About Us</Link></li>
-                        <li><Link to="/service">Service</Link></li>
-                        <li><Link to="/app">Our App</Link></li>
-                        <li><Link to="/blog">News Blog</Link></li>
+                        <li className='hoverLink'>About Us</li>
+                        <li className='hoverLink'>Service</li>
+                        <li className='hoverLink'>Our App</li>
+                        <li className='hoverLink'>News Blog</li>
                     </ul>
                 </div>
 
@@ -41,7 +41,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="footer-bottom">
-                <p>© 2024 The Copyright Company</p>
+                <p>© Vital Visits</p>
             </div>
         </footer>
     );
