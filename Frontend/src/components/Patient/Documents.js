@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/PatientStyle/Documents.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const Documents = (props) => {
     const email = props.email;
@@ -78,14 +80,17 @@ const Documents = (props) => {
                             <h4>{doc.DocName}</h4>
                             <p>{doc.DocDate}</p>
                         </div>
-                        <button
-                            className="ViewBtn"
-                            onClick={() => window.open(doc.DocUrl, "_blank")}>
-                            View
-                        </button>
-                        <button className="delBtn" onClick={() => handleDelete(doc.DocName)}>
-                            &#xf5de;
-                        </button>
+                        <div className="twobuttons">
+                            <button
+                                className="ViewBtn"
+                                onClick={() => window.open(doc.DocUrl, "_blank")}>
+                                View
+                            </button>
+                            <button className="delBtn" onClick={() => handleDelete(doc.DocName)}>
+                                <FontAwesomeIcon icon={faTrashCan} />
+                            </button>
+                        </div>
+
                     </div>
                 ))}
             </div>

@@ -45,6 +45,17 @@ const Bookings = (props) => {
 
   }
 
+  const getStatusClass = (status) => {
+    switch (status.toLowerCase()) {
+      case 'accepted':
+        return 'status confirmed';
+      case 'rejected':
+        return 'status cancelled';
+      case 'pending':
+        return 'status stillPending'
+    }
+  };
+
   return (
     <div className="bookingsContainer">
       <h1 className="bookingsTitle">My Bookings</h1>
@@ -56,7 +67,7 @@ const Bookings = (props) => {
                 <h3>Doctor: Dr. {booking.DoctorName}</h3>
                 <p>Date: {new Date(booking.AppointmentDate).toLocaleDateString()}</p>
                 <p>Time: {booking.AppointmentTime}</p>
-                <p>Status: <span>{booking.Status || 'Pending'}</span></p>
+                <p>Status: <span className={getStatusClass(booking.Status)}>{booking.Status || 'Pending'}</span></p>
               </div>
               <button className="cancelBtn" onClick={() => cancellation(booking._id)} >Cancel Booking</button>
               
