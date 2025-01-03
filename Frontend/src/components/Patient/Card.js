@@ -2,14 +2,14 @@ import "../../styles/PatientStyle/Card.css"
 import { toast } from "react-toastify"
 
 const Card = (props) => {
-    const formHandler = (id)=>{
+    const formHandler = (id) => {
         props.setForm(true)
         props.setEmail(props.individual.email)
     }
 
-    const onlineConsultation = ()=>{
+    const onlineConsultation = () => {
         console.log(props.individual.email);
-        
+
         toast.info("Under construction 🚧—cool stuff is on the way!")
     }
     return (
@@ -29,7 +29,13 @@ const Card = (props) => {
             <div className="book">
                 <h4>Consultation Fees: {props.individual.consultationFee}</h4>
                 <div className="bookBtn">
-                    <button className="Clinic" onClick={()=> {formHandler(props.individual.id)}}>ClinicVisit</button>
+                    <div className="Clinic" onClick={() => formHandler(props.individual.id)}>
+                        <p className="btnText">Vital Visit</p>
+                        <div className="btnTwo">
+                            <p className="btnText2">BOOK</p>
+                        </div>
+                    </div>
+                    {/* <button className="Clinic" onClick={()=> {formHandler(props.individual.id)}}>ClinicVisit</button> */}
                     <button className="Online" onClick={onlineConsultation}>Online Consultation</button>
                 </div>
             </div>

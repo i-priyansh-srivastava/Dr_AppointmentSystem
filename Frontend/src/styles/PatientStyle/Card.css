@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:700);
+
 .eachCard {
     display: flex;
     align-items: center;
@@ -6,15 +8,15 @@
     border-radius: 8px;
     padding: 16px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* max-width: 1000px; */
     margin-left: 3vw;
     margin-right: 3vw;
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    overflow: hidden;
 }
 
 .cardImg {
-    flex: 0 0 120px; /* Fixed width for the image */
+    flex: 0 0 120px;
     margin-right: 20px;
 }
 
@@ -30,14 +32,19 @@
     padding-right: 20px;
 }
 
-.docDetails h1, .docDetails h3, .docDetails h4 {
+.docDetails h1,
+.docDetails h3,
+.docDetails h4 {
     margin: 4px 0;
+    word-wrap: break-word; /* Prevent text overflow */
 }
 
 .book {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    flex: 1;
+    margin-top: 10px;
 }
 
 .book h4 {
@@ -48,26 +55,119 @@
 .bookBtn {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap; /* Buttons wrap on smaller screens */
 }
 
-.Clinic, .Online {
+.Online {
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    background-color: #e7a219;
+    color: white;
+    text-align: center;
+    white-space: nowrap; /* Prevent button text overflow */
 }
 
 .Clinic {
-    background-color: #4caf50;
-    color: white;
+    background: #2196f3;
+    width: 200px;
+    height: 50px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.2s;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
-.Online {
-    background-color: #2196f3;
-    color: white;
+.btnTwo {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    top: -50px;
+    padding-top: 2px;
+    background: #26A69A;
+    left: -250px;
+    transition: 0.3s;
 }
 
-.Clinic:hover, .Online:hover {
-    opacity: 0.9;
+.btnText {
+    color: white;
+    transition: 0.3s;
+    line-height: 50px;
+}
+
+.btnText2 {
+    margin-top: 63px;
+    margin-right: -130px;
+    color: #FFF;
+}
+
+.Clinic:hover .btnTwo {
+    left: -130px;
+}
+
+.Clinic:hover .btnText {
+    margin-left: 65px;
+}
+
+.Clinic:active {
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .eachCard {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cardImg {
+        margin-right: 0;
+        margin-bottom: 15px; /* Add space below the image */
+        flex: 0 0 auto;
+    }
+
+    .docDetails {
+        padding-right: 0;
+    }
+
+    .book {
+        align-items: stretch; /* Ensure buttons take full width */
+        width: 100%;
+    }
+
+    .bookBtn {
+        flex-wrap: wrap; /* Allow wrapping of buttons */
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .Clinic, .Online {
+        width: 100%; /* Make buttons full-width for smaller screens */
+    }
+}
+
+@media (max-width: 468px) {
+    .eachCard {
+        padding: 12px;
+    }
+
+    .docDetails h1,
+    .docDetails h3,
+    .docDetails h4 {
+        font-size: 14px; /* Adjust font sizes for smaller screens */
+    }
+
+    .Clinic {
+        height: 45px; /* Adjust button height */
+    }
+
+    .btnText {
+        line-height: 45px; /* Adjust line height */
+    }
 }

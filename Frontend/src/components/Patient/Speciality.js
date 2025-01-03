@@ -12,7 +12,7 @@ const Speciality = (props) => {
             <h1 className="AllDrHead">All Doctors</h1>
             <div className="CardContainer">
                 {spec.map((item) => (
-                    <button className="specBtn" onClick={() => filterbtn(item)}>
+                    <button className="specBtn color-7" onClick={() => filterbtn(item)}>
                         {item}
                     </button>
                 ))}

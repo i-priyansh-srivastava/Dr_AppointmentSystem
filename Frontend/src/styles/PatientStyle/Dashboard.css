@@ -1,65 +1,174 @@
-
 .DashboardContainer {
-    display: flex;
-    height: 100vh; 
-    background-color: #f5f5f5; 
+  display: flex;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  font-family: 'Arial', sans-serif;
+  /* overflow: hidden; */
 }
 
 .navigation {
-    width: 20%; 
-    background-color: #3f51b5; 
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #333;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: stretch;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hiddenNavigation {
+  transform: translateX(-100%);
 }
 
 .naviBtn {
-    background-color: #ffffff; 
-    color: #3f51b5; 
-    border: none; 
-    padding: 15px;
-    margin: 10px 0; 
-    width: 100%; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; 
+  background-color: #444;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
 }
 
 .naviBtn:hover {
-    background-color: #e0e0e0; 
+  background-color: #555;
+}
+
+.naviBtn.active {
+  background-color: #4caf50;
+  font-weight: bold;
+}
+
+.naviBtn:last-child {
+  margin-top: auto;
 }
 
 .RHS {
-    flex: 1;
-    padding: 20px; 
-    display: flex; 
-    flex-direction: column; 
+  flex: 1;
+  margin-left: 250px;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100vh;
+  transition: margin-left 0.3s ease-in-out;
 }
 
 .profileNavi {
-    display: flex; 
-    justify-content: flex-end; 
-    margin-bottom: 20px; 
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .profile {
-    background-color: #3f51b5;
-    color: white; 
-    border: none;
-    padding: 10px 15px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; 
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
 }
 
 .profile:hover {
-    background-color: #303f9f;
+  background-color: #45a049;
 }
 
 .details {
-    flex: 1; 
-    background-color: #ffffff; 
-    border-radius: 5px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    padding: 20px; 
-    overflow-y: auto; 
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #333;
+  color: white;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    position: fixed;
+    z-index: 10;
+    padding: 15px;
+    display: block;
+  }
+
+  .RHS {
+    margin-left: 0;
+  }
+
+  .hamburger {
+    display: block;
+    top: 15px;
+    left: 15px;
+    font-size: 20px;
+    z-index: 2;
+  }
+
+  .naviBtn{
+    margin: 2vh 0;
+  }
+}
+
+@media (max-width: 468px) {
+  .navigation {
+    position: fixed;
+    z-index: 10;
+    padding: 15px;
+    display: block;
+  }
+
+  .naviBtn {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  .hiddenNavigation {
+    display: none;
+  }
+
+  .profile {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .hamburger {
+    top: 15px;
+    left: 15px;
+    font-size: 20px;
+    z-index: 2;
+  }
 }
