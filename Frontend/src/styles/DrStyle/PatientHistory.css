@@ -17,7 +17,7 @@
   margin: 20px 0;
 }
 
-.appointment-table th, 
+.appointment-table th,
 .appointment-table td {
   border: 1px solid #ddd;
   padding: 10px;
@@ -123,9 +123,19 @@
   background-color: #cc0000;
 }
 
-/* Responsive Design */
 @media screen and (max-width: 600px) {
-  .appointment-table th, 
+  .my-appointments {
+    margin: 10px 5px;
+    padding: 15px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .my-appointments h2 {
+    font-size: 1.6rem;
+  }
+
+  .appointment-table th,
   .appointment-table td {
     font-size: 0.9rem;
     padding: 8px;
@@ -138,6 +148,8 @@
 
   .patient-details {
     padding: 15px;
+    width: 100%;
+    max-width: 90%;
   }
 
   .patient-details h2 {
@@ -147,6 +159,51 @@
   .patient-details p {
     font-size: 0.9rem;
   }
+
+  .closeBtn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .my-appointments {
+    margin: 10px 2px;
+    padding: 10px;
+  }
+
+  .my-appointments h2 {
+    font-size: 1.4rem;
+  }
+
+  .appointment-table th,
+  .appointment-table td {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+
+  .button-82-pushable {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+
+  .patient-details {
+    padding: 10px;
+    width: 95%;
+  }
+
+  .patient-details h2 {
+    font-size: 1.1rem;
+  }
+
+  .patient-details p {
+    font-size: 0.85rem;
+  }
+
+  .closeBtn {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
 }
 
 @keyframes slideIn {
@@ -154,6 +211,7 @@
     transform: translateY(-20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;

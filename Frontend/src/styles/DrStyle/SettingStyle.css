@@ -80,3 +80,74 @@
   color: white;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .doctor-profile-container {
+    left: 5vw;
+    top: 5vh;
+    padding: 15px;
+    max-width: 95%;
+  }
+
+  .doctor-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doctor-profile-pic img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .doctor-profile-details {
+    padding: 8px;
+  }
+
+  .doctor-edit-button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .doctor-modal-content {
+    max-width: 90%;
+  }
+
+  .doctor-save-button,
+  .doctor-cancel-button {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .doctor-profile-container {
+    left: 3vw;
+    top: 5vh;
+    padding: 10px;
+  }
+
+  .doctor-profile-pic img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .doctor-profile-details h5 {
+    font-size: 0.9rem;
+  }
+
+  .doctor-edit-button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .doctor-save-button,
+  .doctor-cancel-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .doctor-profile-details {
+    padding: 5px;
+  }
+}

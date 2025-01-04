@@ -9,23 +9,48 @@ import MyAppointments from './MyAppointments.js';
 import DrSession from './DrSession.js'
 import Setting from "./DrSetting.js";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 const Dashboard = () => {
 
     const location = useLocation();
     const email = location.state?.email;
+    const [isNavVisible, setNavVisible] = useState(window.innerWidth > 768);
+
+    const toggleNavigation = () => {
+        setNavVisible((prev) => !prev);
+    };
+
     useEffect(() => {
         if (email) {
             console.log("Email for this user:", email);
         }
+
+        const handleResize = () => {
+            if (window.innerWidth <= 768) {
+                setNavVisible(false);
+            } else {
+                setNavVisible(true);
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+
     }, [email]);
 
     const [user, setUser] = useState(null);
+
     useEffect(() => {
         if (!email) {
             console.error("Email is undefined. Cannot fetch user data.");
             return;
         }
-    
+
         const fetchUser = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/v1/getUser/${email}`);
@@ -34,15 +59,9 @@ const Dashboard = () => {
                 console.error("Error fetching user:", e);
             }
         };
-    
+
         fetchUser();
     }, [email]);
-    
-
-    const consultations = [
-        { date: "2024-11-01", patient: "Dr. Smith", diagnosis: "Cold", treatment: "Rest and medication", phone: 8754124623 },
-        { date: "2024-10-20", patient: "Dr. Adams", diagnosis: "Flu", treatment: "Flu vaccine and fluids", phone: 9641943168 },
-    ];
 
 
     const handleAccept = (appointment, date, time) => {
@@ -59,10 +78,10 @@ const Dashboard = () => {
     <MyAppointments onAccept={handleAccept} onReject={handleReject} />
 
     const featureMap = {
-        DrContent: <DrContent />,
+        DrContent: <DrContent  />,
         PatientHistory: <PatientHistory email={email} />,
-        UpApp: <MyAppointments email={email}/>,
-        Sessions: <DrSession email={email}/>,
+        UpApp: <MyAppointments email={email} />,
+        Sessions: <DrSession email={email} />,
         Setting: <Setting email={email} />
 
     }
@@ -71,12 +90,15 @@ const Dashboard = () => {
 
     const featureHandler = (argument) => {
         setDrFeature(argument);
+        if (window.innerWidth <= 768) setNavVisible(false);
     }
 
 
     return (
         <div className="DRdashboard">
-            <div className="DRsidebar">
+            <button className="hamburger" onClick={toggleNavigation}><FontAwesomeIcon icon={faBars} /></button>
+            
+            <div className={`DRsidebar ${!isNavVisible ? "hiddenNavigation" : ""}`}>
                 <div className="DRprofile">
                     <img className="DRprofile-pic" src={drPic} alt="Profile" />
                     <div className='DrProfile'>
@@ -104,13 +126,13 @@ const Dashboard = () => {
                 </nav>
             </div>
 
-            <div>
-                {featureMap[DRfeature]};
+            <div className='content'>
+                {featureMap[DRfeature]}
             </div>
 
 
         </div>
-    );
-};
+    )
+}
 
 export default Dashboard;

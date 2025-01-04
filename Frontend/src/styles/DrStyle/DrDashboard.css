@@ -1,200 +1,330 @@
-
-.DRdashboard {
-    display: grid;
-    grid-template-columns: auto auto;
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f4f6;
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
 }
 
+.DRdashboard {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar Styles */
 .DRsidebar {
-    width: 18vw;
-    height: 100vh;
-    position: fixed;
-    background-color: #1f2937;
-    color: #fff;
-    padding: 10vh 0vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 250px;
+  background-color: #3b3f58;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 100;
+  transition: transform 0.3s ease-in-out;
+}
+
+.hiddenNavigation {
+  transform: translateX(-100%);
 }
 
 .DRprofile {
-    display: flex;
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #4b4f6e;
 }
 
 .DRprofile-pic {
-    width: 10vh;
-    height: 10vh;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    object-fit: cover;
-    border: 2px solid #38bdf8;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
 .DrProfile h3 {
-    font-size: 1.2em;
-    margin: 5px 0;
+  margin: 0;
+  font-size: 18px;
 }
 
 .DrProfile p {
-    font-size: 0.9em;
-    color: #9ca3af;
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #ccc;
 }
 
 .logout-btn {
-    background-color: #ef4444;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 0.9em;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-    transition: border-radius 0.3s ease;
-
+  margin: 20px;
+  padding: 10px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .logout-btn:hover {
-    background-color: #dc2626;
-    border-radius: 15%;
+  background-color: #e63946;
 }
 
-.sidebar-nav {
-    margin-top: 30px;
-    width: 100%;
-}
-
+/* Sidebar Navigation */
 .sidebar-nav ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .sidebar-nav li {
-    padding: 15px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: bold;
-    color: #9ca3af;
-    border-bottom: 1px solid #374151;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 .sidebar-nav li:hover {
-    background-color: #38bdf8;
-    color: #fff;
+  background-color: #4b4f6e;
+}
+
+.sidebar-nav li.active {
+  background-color: #1e90ff;
+}
+
+/* Main Content */
+.content {
+  flex-grow: 1;
+  margin-left: 250px;
+  padding: 20px;
+  background-color: #fff;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.hamburger {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  color: #3b3f58;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+.hamburger svg {
+  pointer-events: none;
 }
 
 .DRcontent {
-    width: 80vw;
-    position: absolute;
-    left: 19vw;
-    padding: 20px;
-}
-
-.DRheader {
-    background-image: url("https://images.unsplash.com/photo-1496868834840-5f4c98840aaa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODN8fGxpbmVzJTIwYmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww");
-    color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.header h2 {
-    font-size: 2em;
-    margin: 5px 0;
-}
-
-.header p {
-    font-size: 1em;
-    color: #f3f4f6;
-}
-
-.appointment-btn {
-    background-color: #1f2937;
-    color: #38bdf8;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.appointment-btn:hover {
-    background-color: #38bdf8;
-    color: #1f2937;
+  padding: 20px 2vw;
+  background: #fff;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .DRdate {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #9ca3af;
+  font-size: 14px;
+  text-align: right;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.DRheader {
+  background-image: url("https://images.unsplash.com/photo-1496868834840-5f4c98840aaa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODN8fGxpbmVzJTIwYmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww");
+  text-align: center;
+  color: #3b3f58;
+}
+
+.DRheader p {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+}
+
+.DRheader h2 {
+  margin: 10px 0;
+  font-size: 24px;
+  color: white;
 }
 
 .status {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
 }
 
 .status-card {
-    background-color: #1f2937;
-    color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 22%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  text-align: center;
+  background-color: #3b3f58;
+  padding: 15px;
+  border: 1px solid #e1e5ea;
+  border-radius: 8px;
+  margin: 0 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .status-card h3 {
-    font-size: 2em;
-    margin: 0;
+  font-size: 20px;
+  margin: 5px 0;
+  color: #1e90ff;
 }
 
 .status-card p {
-    font-size: 1em;
-    color: #9ca3af;
+  font-size: 14px;
+  color: #888;
 }
 
 .upcoming-sessions {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 5vh;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .upcoming-sessions h3 {
-    margin-bottom: 10px;
-    color: #1f2937;
+  margin-bottom: 15px;
+  color: #3b3f58;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.upcoming-sessions table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-table thead {
-    background-color: #38bdf8;
-    color: #fff;
+.upcoming-sessions th,
+.upcoming-sessions td {
+  border: 1px solid #e1e5ea;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
 }
 
-table th,
-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+.upcoming-sessions th {
+  background-color: #f8f9fa;
+  color: #3b3f58;
 }
 
-table tbody tr:last-child td {
-    border-bottom: none;
+.upcoming-sessions td p {
+  color: #888;
+  text-align: center;
+  margin: 10px 0;
 }
 
-table tbody td p {
-    color: #9ca3af;
-    text-align: center;
+/* Responsive Styles */
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+  .DRsidebar {
+    width: 200px; /* Reduced sidebar width */
+  }
+
+  .content {
+    margin-left: 0; /* Content takes full width */
+    padding: 15px; /* Reduced padding */
+  }
+
+  .hamburger {
+    display: block; /* Ensure hamburger menu is visible */
+  }
+
+  .DRprofile-pic {
+    width: 80px; /* Reduce profile picture size */
+    height: 80px;
+  }
+
+  .status {
+    flex-direction: column; /* Stack status cards vertically */
+    gap: 10px;
+  }
+
+  .status-card {
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  .upcoming-sessions table {
+    font-size: 12px;
+  }
+
+  .DRheader h2 {
+    font-size: 20px;
+  }
+
+  .DRheader p {
+    font-size: 16px;
+  }
+}
+
+/* For screens 468px and below */
+@media (max-width: 468px) {
+  .DRsidebar {
+    width: 150px;
+    font-size: 12px;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .hamburger {
+    font-size: 20px;
+  }
+
+  .DRprofile {
+    padding: 10px;
+  }
+
+  .DRprofile-pic {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logout-btn {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .status {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .status-card {
+    margin: 8px 0;
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .DRheader h2 {
+    font-size: 18px;
+  }
+
+  .DRheader p {
+    font-size: 14px;
+  }
+
+  .upcoming-sessions table {
+    font-size: 10px;
+  }
+
+  .upcoming-sessions th,
+  .upcoming-sessions td {
+    padding: 8px;
+  }
+
+  .DRcontent {
+    padding: 10px 5vw;
+    margin: 10px auto;
+  }
 }

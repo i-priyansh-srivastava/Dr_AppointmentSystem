@@ -6,8 +6,8 @@ const DrContent = ()=>{
                 <p className="DRdate">{new Date().toLocaleString() + ""}</p>
                 <header className="DRheader">
                     <p>Welcome!</p>
-                    <h2>Test Doctor.</h2>
-                    <p>Thanks for joining with us. We are always trying to get you a complete service. You can view your daily schedule, Reach Patients Appointment at home!</p>
+                    <h2>Dr.</h2>    
+                    <p>We’re glad to have you on board. Your dedication to providing exceptional healthcare makes a significant difference in our community. Together, let’s transform lives, one appointment at a time. Let’s make every appointment count!"</p>
                 </header>
 
                 <section className="status">
