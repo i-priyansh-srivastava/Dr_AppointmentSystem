@@ -8,11 +8,18 @@ import AdminAppointment from "./AdminAppointment.js";
 import AdminPatient from "./AdminPatient.js";
 import { Link } from 'react-router-dom';
 import adminPic from "../../images/adminProfile.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faUserSecret } from "@fortawesome/free-solid-svg-icons";
 
 const AdminDash = () => {
     const [btnPress, setBtn] = useState("Dashboard");
     const [DrData, setDrData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isNavVisible, setNavVisible] = useState(window.innerWidth > 768);
+
+    const toggleNavigation = () => {
+        setNavVisible(prev => !prev);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,6 +35,22 @@ const AdminDash = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 768) {
+                setNavVisible(false);
+            } else {
+                setNavVisible(true);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     const featureMap = {
         Dashboard: <AdminContent />,
         Doctor: <AdminDr DrData={DrData} />,
@@ -38,6 +61,7 @@ const AdminDash = () => {
 
     const handleBtnPress = (choice) => {
         setBtn(choice);
+        if (window.innerWidth <= 768) setNavVisible(false);
     };
 
     if (isLoading) {
@@ -47,31 +71,34 @@ const AdminDash = () => {
 
     return (
         <div className="adminDashboard">
-            <div className="adminSidebar">
+            <button className="Hamburger" onClick={toggleNavigation}>
+                <FontAwesomeIcon icon={faBars} />
+            </button>
+            <div className={`adminSidebar ${!isNavVisible ? "hiddensidebar" : ""}`}>
                 <div className="adminprofile">
-                    <   img className="adminprofile-pic" src={adminPic} alt="Profile" />
+                    <p><FontAwesomeIcon icon={faUserSecret} size="5x" className="custom-icon"/></p>
                     <div className='AdminDetails'>
                         <h3>Admin</h3>
-                    </div>
-                </div>
                 <Link to="/">
                     <button className="logout-btn">Log Out</button>
                 </Link>
-                <div className="adminsidebar-nav">
-                    <ul>
-                        <li onClick={() => handleBtnPress("Dashboard")}>Dashboard</li>
-                        <li onClick={() => handleBtnPress("Doctor")}>Doctors</li>
-                        <li onClick={() => handleBtnPress("Documents")}>Documents</li>
-                        <li onClick={() => handleBtnPress("Appointment")}>Appointment</li>
-                        <li onClick={() => handleBtnPress("Users")}>Users</li>
-                    </ul>
+                    </div>
                 </div>
+                <button className="navigBtn" onClick={() => handleBtnPress("Dashboard")}>Dashboard</button>
+                <button className="navigBtn" onClick={() => handleBtnPress("Doctor")}>Doctors</button>
+                <button className="navigBtn" onClick={() => handleBtnPress("Documents")}>Documents</button>
+                <button className="navigBtn" onClick={() => handleBtnPress("Appointment")}>Appointment</button>
+                <button className="navigBtn" onClick={() => handleBtnPress("Users")}>Users</button>
             </div>
 
-            <div>
-                {featureMap[btnPress]}
+            <div className='rightPane'>
+                <div className='RightContent'>
+                    {featureMap[btnPress]}
+                </div>
             </div>
         </div>
+
+
     );
 };
 

@@ -1,124 +1,162 @@
 .adminDashboard {
     display: flex;
     min-height: 100vh;
-    background-color: #f5f5f5;
+    background-color: #f9f9f9;
     font-family: 'Arial', sans-serif;
+    /* overflow: hidden; */
 }
 
 .adminSidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
     width: 250px;
-    background-color: #2c3e50;
-    color: white;
+    background-color: #333;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+    align-items: stretch;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
 }
 
-.adminprofile {
-    text-align: center;
-    margin-bottom: 30px;
+.hiddensidebar {
+    transform: translateX(-100%);
 }
 
-.adminprofile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    border: 2px solid white;
-}
-
-.AdminDetails h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-    color: #ecf0f1;
-}
-
-.logout-btn {
-    background-color: #e74c3c;
+.custom-icon {
     color: white;
+}
+
+
+.navigBtn {
+    background-color: #444;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.logout-btn:hover {
-    background-color: #c0392b;
-}
-
-.adminsidebar-nav {
-    width: 100%;
-}
-
-.adminsidebar-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-.adminsidebar-nav li {
-    padding: 15px 20px;
-    margin: 5px 0;
-    text-align: center;
-    color: #ecf0f1;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.adminsidebar-nav li:hover {
-    background-color: #34495e;
-    border-radius: 5px;
-}
-
-.adminsidebar-nav li.active {
-    background-color: #16a085;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.adminContent {
-    flex: 1;
-    padding: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-table th,
-table td {
     text-align: left;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-}
-
-table th {
-    background-color: #16a085;
-    color: white;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.loading {
+    cursor: pointer;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-size: 18px;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.navigBtn:hover {
+    background-color: #555;
+}
+
+.navigBtn.active {
+    background-color: #4caf50;
     font-weight: bold;
-    color: #2c3e50;
+}
+
+.rightPane {
+    flex: 1;
+    margin-left: 250px;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100vh;
+    transition: margin-left 0.3s ease-in-out;
+}
+.adminprofile{
+    display: flex;
+    align-items: center;
+}
+
+.AdminDetails{
+    color: whitesmoke;
+
+}
+
+.RightContent {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.Hamburger {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #333;
+    color: white;
+    font-size: 24px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.Hamburger:focus {
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .adminSidebar {
+        position: fixed;
+        z-index: 10;
+        padding: 15px;
+        display: block;
+        width: 200px;
+    }
+
+    .rightPane {
+        margin-left: 0;
+    }
+
+    .Hamburger {
+        display: block;
+        top: 15px;
+        left: 15px;
+        font-size: 20px;
+        z-index: 2;
+    }
+
+    .navigBtn {
+        margin: 2vh 0;
+        width: 108px;
+    }
+}
+
+@media (max-width: 468px) {
+    .adminSidebar {
+        position: fixed;
+        z-index: 10;
+        padding: 15px;
+        display: block;
+    }
+
+    .navigBtn {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+
+    .hiddensidebar {
+        display: none;
+    }
+
+    /* .profile {
+      font-size: 14px;
+      padding: 8px 16px;
+    } */
+
+    .Hamburger {
+        top: 15px;
+        left: 15px;
+        font-size: 20px;
+        z-index: 2;
+    }
 }
