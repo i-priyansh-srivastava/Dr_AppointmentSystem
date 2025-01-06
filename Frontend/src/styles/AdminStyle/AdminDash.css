@@ -72,7 +72,6 @@
 
 .AdminDetails{
     color: whitesmoke;
-
 }
 
 .RightContent {
@@ -103,7 +102,7 @@
     outline: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
     .adminSidebar {
         position: fixed;
         z-index: 10;

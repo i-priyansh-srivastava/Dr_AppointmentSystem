@@ -1,7 +1,7 @@
 .adminContent {
     padding: 20px;
     overflow-y: auto;
-    height: 100vh;
+    height: 100%;
     box-sizing: border-box;
     background-color: #f9f9f9;
     font-family: 'Arial', sans-serif;
