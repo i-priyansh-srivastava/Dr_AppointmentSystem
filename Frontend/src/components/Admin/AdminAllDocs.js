@@ -28,7 +28,7 @@ const AdminAllDocs = () => {
                 <table className="documentsTable">
                     <thead>
                         <tr>
-                            <th>Document ID</th>
+                            <th></th>
                             <th>Owner's Email</th>
                             <th>Document Title</th>
                             <th>Created At</th>
@@ -37,7 +37,7 @@ const AdminAllDocs = () => {
                     <tbody>
                         {documents.map((doc) => (
                             <tr key={doc._id}>
-                                <td><button>View</button></td>
+                                <td><button onClick={() => window.open(doc.DocUrl, "_blank")}>View</button></td>
                                 <td>{doc.UserEmail}</td>
                                 <td>{doc.DocName}</td> 
                                 <td>{new Date(doc.DocDate).toLocaleDateString()}</td> 

@@ -108,7 +108,7 @@ const PatientHistory = ({ email }) => {
                       rel="noopener noreferrer"
                     >{doc.DocName}</a>
 
-                    <button className="viewBtn">View</button>
+                    <button className="viewBtn" onClick={() => window.open(doc.DocUrl, "_blank")}>View</button>
                   </li>
                 ))}
               </ul>
