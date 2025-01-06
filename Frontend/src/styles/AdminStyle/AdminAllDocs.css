@@ -1,23 +1,27 @@
 .documentsListContainer {
     padding: 20px;
-    max-width: 80%;
-    margin: 0 auto;
-    margin-left: 35vw;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    overflow-x: auto;
 }
 
 h2 {
     text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+    color: #444;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-transform: uppercase;
 }
 
 .error {
-    color: red;
+    color: #d9534f;
     text-align: center;
     font-weight: bold;
+    font-size: 14px;
 }
 
 .documentsTable {
@@ -26,27 +30,109 @@ h2 {
     margin: 20px 0;
     font-size: 16px;
     text-align: left;
+    background-color: #fff;
 }
 
 .documentsTable thead tr {
-    background-color: #333;
+    background-color: #007bff;
     color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .documentsTable th,
 .documentsTable td {
-    padding: 12px 15px;
+    padding: 14px 16px;
     border: 1px solid #ddd;
 }
 
 .documentsTable tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f8f9fa;
 }
 
 .documentsTable tbody tr:hover {
-    background-color: #e1f7d5;
+    background-color: #dff0d8;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .documentsTable tbody tr td {
     color: #555;
+    font-size: 15px;
+}
+
+.hrScroll {
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.hrScroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.hrScroll::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 10px;
+}
+
+.hrScroll::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .documentsListContainer {
+        padding: 15px;
+        max-width: 90%;
+        margin-left: 20px;
+        margin-right: 20px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .documentsTable {
+        font-size: 14px;
+    }
+
+    .documentsTable th,
+    .documentsTable td {
+        padding: 12px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .documentsListContainer {
+        padding: 10px;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .documentsTable {
+        font-size: 12px;
+    }
+
+    .documentsTable th,
+    .documentsTable td {
+        padding: 8px 10px;
+    }
+
+    .documentsTable thead tr {
+        font-size: 12px;
+    }
+
+    .documentsTable tbody tr td {
+        font-size: 11px;
+    }
 }

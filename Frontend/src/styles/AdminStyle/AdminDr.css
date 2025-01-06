@@ -1,74 +1,117 @@
 .doctor-list {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     padding: 20px;
-    margin-left: 25vw;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    overflow-x: auto;
+
 }
-.back-btn{
+
+.back-btn {
     border: none;
-    color: blue;
+    background-color: #007bff;
+    color: #fff;
     position: sticky;
     top: 2vh;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
 }
+
+.back-btn:hover {
+    background-color: #0056b3;
+}
+
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
-
 
 .search-btn, .add-new-btn {
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 8px 15px;
+    padding: 10px 15px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.back-btn {
-    background-color: #e0e0e0;
-    color: #333;
+.search-btn:hover, .add-new-btn:hover {
+    background-color: #0056b3;
 }
 
 .headerInput {
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     width: 50%;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.headerInput:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
 .date {
-    color: #666;
+    color: #777;
+    font-size: 14px;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 26px;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .table-section h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #444;
+    text-align: left;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 table th, table td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 12px 15px;
     text-align: left;
+    font-size: 14px;
 }
 
 table th {
-    background-color: #f4f4f4;
-    font-weight: normal;
-    color: #333;
+    background-color: #007bff;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+table tbody tr:hover {
+    background-color: #e1f7d5;
+    transition: background-color 0.2s ease-in-out;
 }
 
 table td.actions {
@@ -77,21 +120,109 @@ table td.actions {
 
 .edit-btn, .view-btn, .remove-btn {
     border: none;
-    padding: 5px 10px;
+    padding: 6px 12px;
     cursor: pointer;
     margin: 0 5px;
     border-radius: 5px;
     color: #fff;
+    font-size: 12px;
+    transition: background-color 0.2s ease;
 }
 
 .edit-btn {
     background-color: #5bc0de;
 }
 
+.edit-btn:hover {
+    background-color: #31b0d5;
+}
+
 .view-btn {
     background-color: #5cb85c;
 }
 
+.view-btn:hover {
+    background-color: #449d44;
+}
+
 .remove-btn {
     background-color: #d9534f;
+}
+
+.remove-btn:hover {
+    background-color: #c9302c;
+}
+
+@media (max-width: 768px) {
+    .doctor-list {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 15px;
+        max-width: 95%;
+    }
+
+    .header {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .headerInput {
+        width: 90%;
+        margin-bottom: 10px;
+    }
+
+    .search-btn, .add-new-btn {
+        width: auto;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    table th, table td {
+        font-size: 13px;
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .doctor-list {
+        margin: 5px;
+        padding: 10px;
+        max-width: 100%;
+        box-shadow: none;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .header {
+        flex-direction: row;
+    }
+
+    .headerInput {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-btn, .add-new-btn {
+        width: auto;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    table th, table td {
+        font-size: 12px;
+        padding: 8px 5px;
+    }
+
+    .edit-btn, .view-btn, .remove-btn {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
 }

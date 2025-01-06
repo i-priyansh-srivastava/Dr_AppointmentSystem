@@ -1,9 +1,10 @@
 .adminContent {
-    margin-left: 250px;
     padding: 20px;
     overflow-y: auto;
     height: 100vh;
     box-sizing: border-box;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
 }
 
 .adminHeader {
@@ -13,17 +14,26 @@
     margin-bottom: 20px;
 }
 
-.adminSearch{
+.adminSearch {
     display: flex;
     justify-content: center;
-}
-.adminHeader_input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 35vw;
+    align-items: center;
 }
 
+.adminHeader_input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 35vw;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.adminHeader_input:focus {
+    border: 1px solid #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 
 .adminSearch-btn {
     background-color: #007bff;
@@ -33,76 +43,114 @@
     cursor: pointer;
     margin-left: 10px;
     border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.adminSearch-btn:hover {
+    background-color: #0056b3;
 }
 
 .date {
     color: #666;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
 }
-
 
 .adminStatus {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .adminStatus-card {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
     width: 22%;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.adminStatus-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .adminStatus-card h3 {
     margin: 0;
     font-size: 24px;
+    color: #007bff;
 }
 
 .adminStatus-card p {
     margin: 10px 0 0;
     color: #666;
+    font-size: 14px;
 }
 
+.hrScoll{
+    overflow-x: auto;
+}
 
 .adminUpcoming {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 30px;
+    gap: 20px;
 }
 
 .adminUpAppointments,
 .adminUpSessions {
-    width: 47%;
-    margin-top: 30px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    overflow-x: auto;
 }
 
 .adminUpAppointments h3,
 .adminUpSessions h3 {
     font-size: 18px;
-    color: #007bff;
-    margin-bottom: 10px;
+    color: #9b12df;
+    margin-bottom: 15px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    font-size: 14px;
 }
 
-table th, table td {
+table th, 
+table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
+    font-size: 14px;
 }
 
 table th {
     background-color: #f4f4f4;
-    font-weight: normal;
+    font-weight: bold;
+}
+
+table tbody tr:hover {
+    background-color: #e9f5ff;
 }
 
 table tbody tr td {
     text-align: center;
+    color: #666;
 }
 
 table tbody tr td p {
@@ -111,7 +159,7 @@ table tbody tr td p {
 }
 
 .show-all-btn {
-    background-color: #007bff;
+    background-color: #9b12df;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -121,4 +169,71 @@ table tbody tr td p {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.show-all-btn:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .adminContent {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .adminStatus {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .adminStatus-card {
+        width: 100%;
+    }
+
+    .adminUpcoming {
+        flex-direction: column;
+    }
+
+    .adminUpAppointments,
+    .adminUpSessions {
+        width: 100%;
+    }
+
+    .adminHeader_input {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .adminHeader_input {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .adminSearch-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .adminStatus-card h3 {
+        font-size: 20px;
+    }
+
+    .adminStatus-card p {
+        font-size: 12px;
+    }
+
+    table th, 
+    table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .show-all-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
 }

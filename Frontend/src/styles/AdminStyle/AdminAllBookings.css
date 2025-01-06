@@ -1,76 +1,133 @@
 .adminBookingsContainer {
     max-width: 1200px;
-    margin: 50px auto;
-    margin-left: 35vw;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
     font-family: 'Arial', sans-serif;
+    transition: all 0.3s ease;
+    overflow-x: auto;
 }
 
 .adminBookingsContainer h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #333;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
 .error {
     text-align: center;
-    color: red;
+    color: #dc3545;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .bookingsTable {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: 16px;
 }
 
 .bookingsTable thead {
     background-color: #007bff;
     color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .bookingsTable th, 
 .bookingsTable td {
     text-align: left;
-    padding: 12px 15px;
+    padding: 14px 20px;
     border: 1px solid #ddd;
+    font-size: 14px;
 }
 
 .bookingsTable tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
 }
 
 .bookingsTable tbody tr:hover {
     background-color: #e9f5ff;
+    transition: background-color 0.2s ease;
 }
 
 .status {
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
+    display: inline-block;
+    font-size: 14px;
 }
 
 .status.accepted {
-    color: #28a745; 
-    background-color: #e8f7ea; 
+    color: #28a745;
+    background-color: #e8f7ea;
     border: 1px solid #28a745;
 }
 
 .status.pending {
-    color: #ffc107; 
-    background-color: #fff7e6; 
+    color: #ffc107;
+    background-color: #fff7e6;
     border: 1px solid #ffc107;
 }
 
 .status.rejected {
-    color: #dc3545; 
-    background-color: #fdecea; 
+    color: #dc3545;
+    background-color: #fdecea;
     border: 1px solid #dc3545;
+}
+
+@media (max-width: 768px) {
+    .adminBookingsContainer {
+        margin: 30px auto;
+        padding: 20px;
+        max-width: 95%;
+    }
+
+    .adminBookingsContainer h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .bookingsTable th, 
+    .bookingsTable td {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+
+    .bookingsTable tbody tr td {
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+    .adminBookingsContainer {
+        margin: 15px auto;
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .adminBookingsContainer h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .bookingsTable th, 
+    .bookingsTable td {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .status {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
 }
