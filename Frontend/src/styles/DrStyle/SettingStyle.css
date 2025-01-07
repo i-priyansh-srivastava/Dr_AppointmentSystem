@@ -1,12 +1,10 @@
 .doctor-profile-container {
-  position: absolute;
-  left: 34vw;
-  top: 10vh;
+  margin-top: 8%;
+  margin-left: 20%;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  max-width: 800px;
-  margin: 20px auto;
+  height:fit-content;
 }
 
 .doctor-profile-header {
@@ -81,10 +79,10 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 769px) {
   .doctor-profile-container {
-    left: 5vw;
-    top: 5vh;
+    margin-top: 8%;
+    margin-left: 10%;
     padding: 15px;
     max-width: 95%;
   }
@@ -122,8 +120,7 @@
 
 @media screen and (max-width: 480px) {
   .doctor-profile-container {
-    left: 3vw;
-    top: 5vh;
+    margin: 10% 15%;
     padding: 10px;
   }
 

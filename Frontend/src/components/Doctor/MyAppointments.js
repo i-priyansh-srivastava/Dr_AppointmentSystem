@@ -90,7 +90,7 @@ const MyAppointments = ({ email, onAccept, onReject }) => {
               <td>{new Date(it.AppointmentDate).toLocaleDateString()}</td>
               <td>{it.AppointmentTime}</td>
               <td>{it.Symptoms}</td>
-              <td>
+              <td className="display">
                 <button className="accept-btn" onClick={() => handleAccept(it._id)}>
                   Accept
                 </button>

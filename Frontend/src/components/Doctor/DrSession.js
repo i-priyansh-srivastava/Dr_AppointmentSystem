@@ -35,7 +35,7 @@ const MySessions = ({email}) => {
             <th>Patient Name</th>
             <th>Contact</th>
             <th>Reason for visit</th>
-            {/* <th>Platform</th> */}
+            <th>Platform</th>
           </tr>
         </thead>
         <tbody>
@@ -46,11 +46,11 @@ const MySessions = ({email}) => {
               <td>{it.PatientName}</td>
               <td>{it.ContactNo}</td>
               <td>{it.Symptoms}</td>
-              {/* <td>
-                <a>
-                  Join on 
+              <td>
+                <a className="platform-link">
+                  JOIN NOW
                 </a>
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>
