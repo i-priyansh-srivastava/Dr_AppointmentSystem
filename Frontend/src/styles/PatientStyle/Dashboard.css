@@ -3,7 +3,6 @@
   min-height: 100vh;
   background-color: #f9f9f9;
   font-family: 'Arial', sans-serif;
-  /* overflow: hidden; */
 }
 
 .navigation {
@@ -11,7 +10,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 250px;
+  width: 20%;
   background-color: #333;
   padding: 20px;
   display: flex;
@@ -22,6 +21,7 @@
   z-index: 1000;
   transform: translateX(0);
   transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
 }
 
 .hiddenNavigation {
@@ -52,18 +52,20 @@
   font-weight: bold;
 }
 
-.naviBtn:last-child {
+/* .naviBtn:last-child {
   margin-top: auto;
-}
+} */
 
 .RHS {
   flex: 1;
-  margin-left: 250px;
+  margin-left: 20%;
+  width: 80%;
   background-color: #fff;
   padding: 20px;
   overflow-y: auto;
-  height: 100vh;
+  height: 100%;
   transition: margin-left 0.3s ease-in-out;
+  
 }
 
 .profileNavi {
@@ -95,8 +97,10 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  height: calc(100vh - 40px);
+  height: calc(100% - 40px);
   overflow-y: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .hamburger {
@@ -118,16 +122,15 @@
   outline: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .navigation {
-    position: fixed;
-    z-index: 10;
-    padding: 15px;
-    display: block;
+    width: 50%;
+    font-size: 12px;
   }
 
   .RHS {
     margin-left: 0;
+    padding: 15px;
   }
 
   .hamburger {
@@ -138,22 +141,18 @@
     z-index: 2;
   }
 
-  .naviBtn{
-    margin: 2vh 0;
-  }
 }
 
 @media (max-width: 468px) {
   .navigation {
-    position: fixed;
-    z-index: 10;
-    padding: 15px;
-    display: block;
+    width: 55%;
+    font-size: 12px;
   }
 
   .naviBtn {
     font-size: 14px;
     padding: 10px 18px;
+    width: fit-content;
   }
 
   .hiddenNavigation {

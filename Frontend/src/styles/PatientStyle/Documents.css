@@ -1,6 +1,5 @@
 .docContainer {
-    max-width: 100%;
-    width: 600px;
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
     font-family: 'Arial', sans-serif;
@@ -102,7 +101,7 @@
     outline: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
     .docContainer {
         width: 100%;
         padding: 15px;

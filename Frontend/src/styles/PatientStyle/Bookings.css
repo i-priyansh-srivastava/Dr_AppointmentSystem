@@ -1,6 +1,5 @@
 .bookingsContainer {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 100%;
     padding: 20px;
     font-family: Arial, sans-serif;
     box-sizing: border-box; 
@@ -58,15 +57,15 @@
     margin-right: 10px;
 }
 
-.status.confirmed {
+.statusMssg.confirmed {
     color: #28a745;
 }
 
-.status.stillPending {
+.statusMssg.stillPending {
     color: #ffc107;
 }
 
-.status.cancelled {
+.statusMssg.cancelled {
     color: #dc3545;
 }
 
@@ -80,7 +79,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     flex-shrink: 0; 
-    min-width: 100px; 
+    width: fit-content;
     text-align: center; 
 }
 
@@ -90,7 +89,7 @@
 
 @media (max-width: 768px) {
     .bookingItem {
-        flex-wrap: nowrap; 
+        flex-wrap: wrap; 
         align-items: flex-start; 
     }
 

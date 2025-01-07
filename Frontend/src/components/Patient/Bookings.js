@@ -48,11 +48,11 @@ const Bookings = (props) => {
   const getStatusClass = (status) => {
     switch (status.toLowerCase()) {
       case 'accepted':
-        return 'status confirmed';
+        return 'statusMssg confirmed';
       case 'rejected':
-        return 'status cancelled';
+        return 'statusMssg cancelled';
       case 'pending':
-        return 'status stillPending'
+        return 'statusMssg stillPending'
     }
   };
 

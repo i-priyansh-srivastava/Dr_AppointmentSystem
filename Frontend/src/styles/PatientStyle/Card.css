@@ -11,17 +11,21 @@
     margin-left: 3vw;
     margin-right: 3vw;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex-wrap: wrap; 
     overflow: hidden;
 }
 
 .cardImg {
     flex: 0 0 120px;
     margin-right: 20px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
 }
 
 .cardImg img {
     width: 100%;
+    max-width: 120px; 
     height: auto;
     border-radius: 8px;
     object-fit: cover;
@@ -36,7 +40,7 @@
 .docDetails h3,
 .docDetails h4 {
     margin: 4px 0;
-    word-wrap: break-word; /* Prevent text overflow */
+    word-wrap: break-word;
 }
 
 .book {
@@ -55,7 +59,7 @@
 .bookBtn {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap; /* Buttons wrap on smaller screens */
+    flex-wrap: wrap; 
 }
 
 .Online {
@@ -67,7 +71,7 @@
     background-color: #e7a219;
     color: white;
     text-align: center;
-    white-space: nowrap; /* Prevent button text overflow */
+    white-space: nowrap; 
 }
 
 .Clinic {
@@ -119,17 +123,23 @@
     box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .eachCard {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
     }
 
     .cardImg {
         margin-right: 0;
-        margin-bottom: 15px; /* Add space below the image */
+        margin-bottom: 15px; 
         flex: 0 0 auto;
+        display: flex;
+        justify-content: center; 
+    }
+
+    .cardImg img {
+        padding-right: 10px;
+        border-radius: 8px;
     }
 
     .docDetails {
@@ -137,18 +147,18 @@
     }
 
     .book {
-        align-items: stretch; /* Ensure buttons take full width */
+        align-items: stretch; 
         width: 100%;
     }
 
     .bookBtn {
-        flex-wrap: wrap; /* Allow wrapping of buttons */
+        flex-wrap: wrap; 
         justify-content: center;
         gap: 8px;
     }
 
     .Clinic, .Online {
-        width: 100%; /* Make buttons full-width for smaller screens */
+        width: 100%;
     }
 }
 
@@ -157,17 +167,24 @@
         padding: 12px;
     }
 
-    .docDetails h1,
+    .docDetails h1{
+        font-size: 22px;
+    }
+    
     .docDetails h3,
     .docDetails h4 {
-        font-size: 14px; /* Adjust font sizes for smaller screens */
+        font-size: 14px; 
+    }
+
+    .cardImg img {
+        border-radius: 6px;
     }
 
     .Clinic {
-        height: 45px; /* Adjust button height */
+        height: 45px;
     }
 
     .btnText {
-        line-height: 45px; /* Adjust line height */
+        line-height: 45px; 
     }
 }
