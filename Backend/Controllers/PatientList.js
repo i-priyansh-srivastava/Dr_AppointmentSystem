@@ -1,4 +1,6 @@
 const PatientData = require("../Models/BookDoctor");
+const nodemailer = require('nodemailer');
+require("dotenv").config();
 
 
 const PatList = async (req, res) => {
@@ -6,7 +8,7 @@ const PatList = async (req, res) => {
     const { DrEmail, Status } = req.query;
 
     const query = {};
-    if (DrEmail) query.DrEmail = DrEmail; 
+    if (DrEmail) query.DrEmail = DrEmail;
     if (Status) query.Status = Status;
 
     const list = await PatientData.find(query);
@@ -24,25 +26,63 @@ const PatList = async (req, res) => {
 
 const StatusUpdate = async (req, res) => {
   console.log("hello");
-  
+
   try {
-    const id  = req.params.id;
-    const { Status }= req.body; 
+    const id = req.params.id;
+    const { Status } = req.body;
     console.log(id + "  " + Status);
-    
+
 
     if (!id || !Status) {
       return res.status(400).json({ message: "ID and status are required" });
     }
 
+    const appointment = await PatientData.findById(id);
+
     const updatedAppointment = await PatientData.findByIdAndUpdate(
       id,
       { Status: Status },
-      { new: true } 
+      { new: true }
     );
 
     if (!updatedAppointment) {
       return res.status(404).json({ message: "Appointment not found" });
+    }
+    console.log(process.env.from);
+    console.log(process.env.pass);
+    console.log(process.env.user);
+    
+  
+  
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.user,
+          pass: process.env.pass,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.from,
+        to: appointment.PatientEmail,
+        subject: 'Appointment Update',
+        text: `Hello,
+
+We hope this email finds you well.
+
+We are writing to inform you that your appointment request with Dr. ${appointment.DoctorName} has been ${Status}.
+
+Thank you for your understanding. Feel free to reach out with any questions.
+
+Best regards,
+Vital Visits`,
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log('Email sent successfully!');
+    } catch (error) {
+      console.error('Error sending email:', error);
     }
 
     res.status(200).json({
