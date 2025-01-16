@@ -15,6 +15,8 @@ const AllDoctors = (props) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/api/v1/allDoctor');
+                console.log(response);
+                
 
                 setDoctors(response.data);
                 console.log("Doctors data:", response.data);
