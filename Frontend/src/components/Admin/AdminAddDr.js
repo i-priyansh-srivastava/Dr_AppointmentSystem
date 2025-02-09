@@ -75,7 +75,7 @@ const AdminAddDr = (props) => {
                         onChange={(e) => setSpeciality(e.target.value)} 
                         required 
                     />
-
+    
                     <label htmlFor="experience">Experience:</label>
                     <input 
                         type="number"  
