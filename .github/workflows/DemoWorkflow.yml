@@ -1,68 +1,15 @@
-name: DemoWorkflow
- 
-# Controls when the workflow will run
+name: CI/CD Workflow
+
 on:
-  # Triggers on push or pull request events for the main branch
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
- 
-# A workflow run is made up of one or more jobs
+
 jobs:
-  # This workflow contains a single job called "demo"
-  demo:
-    # The type of runner that the job will run on
+  build-backend:
     runs-on: ubuntu-latest
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      # Runs a single command
-      - name: Run a simple command
-        run: echo "Hello, GitHub Actions!"
-      
-      # Runs multiple commands
-      - name: Run multiple commands
-        run: |
-          echo "Running multiple commands..."
-          echo "Current directory: $(pwd)"
-          echo "Files in directory:"
-          ls -la
-          echo "Date: $(date)"
-      
-      # Example of using environment variables
-      - name: Test environment variables
-        env:
-          MY_VAR: "Demo Variable"
-          MY_SECRET: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "Environment variable: $MY_VAR"
-          echo "GitHub Actor: ${{ github.actor }}"
-          echo "GitHub Repository: ${{ github.repository }}"
-      
-      # Example of running a script
-      - name: Run a demo script
-        run: |
-          echo "#!/bin/bash" > demo.sh
-          echo "echo 'This is a demo script!'" >> demo.sh
-          chmod +x demo.sh
-          ./demo.sh
- 
-  # Second job to demonstrate job dependencies
-  test-matrix:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [18, 20]
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -70,11 +17,35 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '18'  
       
-      - name: Display Node version
-        run: node --version
-      
-      - name: Display OS info
+      - name: Install backend dependencies
         run: |
-          echo "Running on ${{ matrix.os }} with Node ${{ matrix.node-version }}"
+          cd Backend
+          npm install
+      
+      - name: Build backend
+        run: |
+          cd Backend
+          npm run build  
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install frontend dependencies
+        run: |
+          cd Frontend
+          npm install
+      
+      - name: Build frontend
+        run: |
+          cd Frontend
+          npm run build
