@@ -27,7 +27,7 @@ jobs:
       - name: Build backend
         run: |
           cd Backend
-          npm run build  
+          npm run start  
 
   build-frontend:
     runs-on: ubuntu-latest
